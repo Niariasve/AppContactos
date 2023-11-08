@@ -114,5 +114,20 @@ public class Contacto {
     }
     
     
+//    @FXML
+//    public void agregarContacto(){
+//        String nombre=nombreTf.getText();
+//        String apellido=apellidoTf.getText();
+//        String empresa=empresaTf.getText();
+//        LinkedList<String> telefono= LinkedList<>(telefonoTf.getText());
+//        Contacto nuevoContacto=new Contacto(nombre,apellido,empresa,telefono);
+//        listaDeContactos.addC(nuevoContacto);
+//        txtNombre.clear();
+//        txtApellido.clear();
+//        empresaTf.clear();
+//        telefonoTf.clear();
+//        
+//    }
+    
 
 }
