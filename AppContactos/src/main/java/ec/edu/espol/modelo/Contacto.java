@@ -13,6 +13,8 @@ import java.util.List;
 public class Contacto {
 
     private String nombre;
+    private String apellido;
+    private String Empresa;
     private String numeroTelefono;
     private String direccion;
     private List<String> emails;
@@ -22,17 +24,22 @@ public class Contacto {
     private List<Contacto> contactosRelacionados;
     private List<Foto> Fotos;
 
-    public Contacto(String nombre, String numeroTelefono, String direccion, List<String> emails, List<String> numerosTelefonicos,List<String> redesSociales, List<Foto> Fotos, List<String> fechasDeInteres, List<Contacto> contactosRelacionados) {
+    public Contacto(String nombre, String apellido, String Empresa, String numeroTelefono, String direccion, List<String> emails, List<String> numerosTelefonicos, List<String> redesSociales, List<String> fechasDeInteres, List<Contacto> contactosRelacionados, List<Foto> Fotos) {       
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.Empresa = Empresa;
         this.numeroTelefono = numeroTelefono;
         this.direccion = direccion;
         this.emails = emails;
         this.numerosTelefonicos = numerosTelefonicos;
         this.redesSociales = redesSociales;
-        this.Fotos = Fotos;
         this.fechasDeInteres = fechasDeInteres;
         this.contactosRelacionados = contactosRelacionados;
+        this.Fotos = Fotos;
     }
+    
+
+    
 
     public String getNombre() {
         return nombre;
