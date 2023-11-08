@@ -8,9 +8,11 @@ import ec.edu.espol.appcontactos.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -20,16 +22,22 @@ import javafx.scene.layout.FlowPane;
  *
  * @author User
  */
-public class ContactosController implements Initializable {
+public class AgregarContactoController implements Initializable {
 
     @FXML
-    private Button editar;
+    private Button exit;
     @FXML
-    private ImageView agregar;
+    private Button agregar;
     @FXML
-    private ImageView eliminar;
+    private ImageView profilePicture;
     @FXML
-    private FlowPane listaContactos;
+    private Button agregarProfilePicButton;
+    @FXML
+    private TextField nombreTf;
+    @FXML
+    private FlowPane telefonosFP;
+    @FXML
+    private TextField telefonoTf;
 
     /**
      * Initializes the controller class.
@@ -40,10 +48,22 @@ public class ContactosController implements Initializable {
     }    
 
     @FXML
-    private void entrarAgregarContacto(MouseEvent event) {
+    private void salirDeAgregarContacto(MouseEvent event) {
         try {
-            App.setRoot("agregarContacto");
+            App.setRoot("contactos");
         } catch (IOException ex) {}
+    }
+
+    @FXML
+    private void agregarContacto(MouseEvent event) {
+    }
+
+    @FXML
+    private void cambiarFotoDePerfil(MouseEvent event) {
+    }
+
+    @FXML
+    private void agregarTelefono(MouseEvent event) {
     }
     
 }
