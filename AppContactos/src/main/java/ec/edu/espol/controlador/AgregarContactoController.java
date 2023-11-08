@@ -38,6 +38,32 @@ public class AgregarContactoController implements Initializable {
     private FlowPane telefonosFP;
     @FXML
     private TextField telefonoTf;
+    @FXML
+    private Button agregarTelefonoBoton;
+    @FXML
+    private FlowPane correosFP;
+    @FXML
+    private TextField correoTf;
+    @FXML
+    private Button agregarCorreoBoton;
+    @FXML
+    private FlowPane redesSocialesFP;
+    @FXML
+    private TextField redesSocialesTf;
+    @FXML
+    private Button agregarRedSocialBoton;
+    @FXML
+    private FlowPane fechasFP;
+    @FXML
+    private TextField fechasTf;
+    @FXML
+    private Button agregarFechaBoton;
+    @FXML
+    private FlowPane contactosRelacionadosFP;
+    @FXML
+    private TextField contactosRelacionadosTf;
+    @FXML
+    private Button agregarContactoRelacionadoBoton;
 
     /**
      * Initializes the controller class.
@@ -64,6 +90,22 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarTelefono(MouseEvent event) {
+    }
+
+    @FXML
+    private void agregarCorreo(MouseEvent event) {
+    }
+
+    @FXML
+    private void agregarRedSocial(MouseEvent event) {
+    }
+
+    @FXML
+    private void agregarFecha(MouseEvent event) {
+    }
+
+    @FXML
+    private void agregarContactoRelacionado(MouseEvent event) {
     }
     
 }
