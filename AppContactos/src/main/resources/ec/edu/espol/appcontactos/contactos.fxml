@@ -29,13 +29,9 @@
                               <Image url="@../imgs/6324460.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="eliminar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imgs/iconfinder-contat-us-11delete-contact-4211838_115044.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </HBox>
+                  <HBox prefHeight="90.0" prefWidth="10.0" />
                </children>
             </HBox>
             <ScrollPane hbarPolicy="NEVER" hmax="0.0">

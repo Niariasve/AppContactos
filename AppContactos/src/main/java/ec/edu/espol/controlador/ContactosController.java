@@ -27,8 +27,6 @@ public class ContactosController implements Initializable {
     @FXML
     private ImageView agregar;
     @FXML
-    private ImageView eliminar;
-    @FXML
     private FlowPane listaContactos;
 
     /**
