@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -34,14 +33,41 @@
                   <HBox prefHeight="90.0" prefWidth="10.0" />
                </children>
             </HBox>
-            <ScrollPane hbarPolicy="NEVER" hmax="0.0">
-               <content>
-                  <FlowPane fx:id="listaContactos" prefHeight="400.0" prefWidth="400.0" />
-               </content>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </ScrollPane>
+            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
+               <children>
+                  <Pane prefHeight="25.0" prefWidth="400.0" />
+                  <ImageView fx:id="actualProfilePic" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/istockphoto-1337144146-612x612.jpg" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="25.0" prefWidth="400.0" />
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="220.0" prefWidth="200.0">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="400.0">
+                           <children>
+                              <Label text="Nombres:" />
+                              <Label fx:id="nombresLabel" />
+                              <Label text="Apellidos:" />
+                              <Label fx:id="apellidosLabel" />
+                              <Label text="Empresa:" />
+                              <Label fx:id="EmpresaLabel" />
+                              <Label text="Números Telefónico:" />
+                              <Label fx:id="telefonosLabel" />
+                              <Label text="Correos Electrónicos:" />
+                              <Label fx:id="correosLabel" />
+                              <Label text="Dirección:" />
+                              <Label fx:id="direccionLabel" />
+                              <Label text="Redes Sociales:" />
+                              <Label fx:id="redesLabel" />
+                              <Label text="Fechas Importantes:" />
+                              <Label fx:id="fechasLabel" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;" />
          </children>
       </VBox>

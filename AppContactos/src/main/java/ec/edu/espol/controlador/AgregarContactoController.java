@@ -43,25 +43,17 @@ public class AgregarContactoController implements Initializable {
     @FXML
     private TextField telefonoTf;
     @FXML
-    private Button agregarTelefonoBoton;
-    @FXML
     private FlowPane correosFP;
     @FXML
     private TextField correoTf;
-    @FXML
-    private Button agregarCorreoBoton;
     @FXML
     private FlowPane redesSocialesFP;
     @FXML
     private TextField redesSocialesTf;
     @FXML
-    private Button agregarRedSocialBoton;
-    @FXML
     private FlowPane fechasFP;
     @FXML
     private TextField fechasTf;
-    @FXML
-    private Button agregarFechaBoton;
     @FXML
     private FlowPane contactosRelacionadosFP;
     @FXML
@@ -163,6 +155,11 @@ public class AgregarContactoController implements Initializable {
     
     private List<String> nodeListToStringList(List<Node> nodeList) {
         //Change for own tda
+        /*
+        Crea una lista de Strings a partir de un lista de Nodos (TextField)
+        para poder extraer los datos y poder crear la instancia de contacto e introducirla en
+        la lista de contactos
+        */
         List<String> stringList = new ArrayList<>();
         
         for (Node node : nodeList) {
@@ -176,6 +173,10 @@ public class AgregarContactoController implements Initializable {
     }
     
     private TextField newTextField(String promptText) {
+        /*
+        Este metodo crea un TextField con un prompText que recibe como parámetro
+        para facilitar la creación de los TextFields donde se van a introducir los datos
+        */
         TextField tf = new TextField();
         tf.setPromptText(promptText);
         tf.setPrefWidth(290);

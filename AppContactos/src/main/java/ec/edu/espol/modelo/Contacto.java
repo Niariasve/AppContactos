@@ -14,8 +14,7 @@ public class Contacto {
 
     private String nombre;
     private String apellido;
-    private String Empresa;
-    private String numeroTelefono;
+    private String Empresa;    
     private String direccion;
     private List<String> emails;
     private List<String> numerosTelefonicos;
@@ -24,11 +23,10 @@ public class Contacto {
     private List<Contacto> contactosRelacionados;
     private List<Foto> Fotos;
 
-    public Contacto(String nombre, String apellido, String Empresa, String numeroTelefono, String direccion, List<String> emails, List<String> numerosTelefonicos, List<String> redesSociales, List<String> fechasDeInteres, List<Contacto> contactosRelacionados, List<Foto> Fotos) {       
+    public Contacto(String nombre, String apellido, String Empresa, String direccion, List<String> emails, List<String> numerosTelefonicos, List<String> redesSociales, List<String> fechasDeInteres, List<Contacto> contactosRelacionados, List<Foto> Fotos) {       
         this.nombre = nombre;
         this.apellido = apellido;
-        this.Empresa = Empresa;
-        this.numeroTelefono = numeroTelefono;
+        this.Empresa = Empresa;        
         this.direccion = direccion;
         this.emails = emails;
         this.numerosTelefonicos = numerosTelefonicos;
@@ -48,15 +46,7 @@ public class Contacto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getNumeroTelefono() {
-        return numeroTelefono;
-    }
-
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
-    }
-
+ 
     public String getDireccion() {
         return direccion;
     }
@@ -112,22 +102,4 @@ public class Contacto {
     public void setFotos(List<Foto> Fotos) {
         this.Fotos = Fotos;
     }
-    
-    
-//    @FXML
-//    public void agregarContacto(){
-//        String nombre=nombreTf.getText();
-//        String apellido=apellidoTf.getText();
-//        String empresa=empresaTf.getText();
-//        LinkedList<String> telefono= LinkedList<>(telefonoTf.getText());
-//        Contacto nuevoContacto=new Contacto(nombre,apellido,empresa,telefono);
-//        listaDeContactos.addC(nuevoContacto);
-//        txtNombre.clear();
-//        txtApellido.clear();
-//        empresaTf.clear();
-//        telefonoTf.clear();
-//        
-//    }
-    
-
 }
