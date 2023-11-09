@@ -14,7 +14,7 @@ public class Contacto {
 
     private String nombre;
     private String apellido;
-    private String Empresa;    
+    private String empresa;    
     private String direccion;
     private List<String> emails;
     private List<String> numerosTelefonicos;
@@ -23,10 +23,10 @@ public class Contacto {
     private List<Contacto> contactosRelacionados;
     private List<Foto> Fotos;
 
-    public Contacto(String nombre, String apellido, String Empresa, String direccion, List<String> emails, List<String> numerosTelefonicos, List<String> redesSociales, List<String> fechasDeInteres, List<Contacto> contactosRelacionados, List<Foto> Fotos) {       
+    public Contacto(String nombre, String apellido, String empresa, String direccion, List<String> emails, List<String> numerosTelefonicos, List<String> redesSociales, List<String> fechasDeInteres, List<Contacto> contactosRelacionados, List<Foto> Fotos) {       
         this.nombre = nombre;
         this.apellido = apellido;
-        this.Empresa = Empresa;        
+        this.empresa = empresa;        
         this.direccion = direccion;
         this.emails = emails;
         this.numerosTelefonicos = numerosTelefonicos;

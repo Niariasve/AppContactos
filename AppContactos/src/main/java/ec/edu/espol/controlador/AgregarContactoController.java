@@ -6,6 +6,7 @@ package ec.edu.espol.controlador;
 
 import Exceptiones.CampoVacioException;
 import ec.edu.espol.appcontactos.App;
+import ec.edu.espol.modelo.Contacto;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class AgregarContactoController implements Initializable {
     private TextField apellidoTf;
     @FXML
     private TextField empresaTf;
+    @FXML
+    private TextField direccionTf;
 
     /**
      * Initializes the controller class.
@@ -85,16 +88,18 @@ public class AgregarContactoController implements Initializable {
         String nombre = nombreTf.getText();      
         String apellido = apellidoTf.getText();
         String empresa = empresaTf.getText();
+        String direccion = direccionTf.getText();
         List<String> telefonos = getTelefonos();
         List<String> correos = getCorreos();
         List<String> redesSociales = getRedesSociales();
         List<String> fechas = getFechas();
         
+        boolean agg = true;
+        
         try {           
             camposLLenadosCorrectamente(nombre,apellido,empresa, telefonos);
             
-            System.out.println(telefonos);
-            System.out.println(correos);
+            Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, telefonos, correos, redesSociales, fechas, null, null);
 
         } catch (CampoVacioException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
