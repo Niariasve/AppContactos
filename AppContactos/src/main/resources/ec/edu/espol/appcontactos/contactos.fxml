@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
    <children>
@@ -46,21 +47,45 @@
                      <content>
                         <VBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="400.0">
                            <children>
-                              <Label text="Nombres:" />
+                              <Label text="Nombres:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="nombresLabel" />
-                              <Label text="Apellidos:" />
+                              <Label text="Apellidos:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="apellidosLabel" />
-                              <Label text="Empresa:" />
-                              <Label fx:id="EmpresaLabel" />
-                              <Label text="Números Telefónico:" />
+                              <Label text="Empresa:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="empresaLabel" />
+                              <Label text="Números Telefónico:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="telefonosLabel" />
-                              <Label text="Correos Electrónicos:" />
+                              <Label text="Correos Electrónicos:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="correosLabel" />
-                              <Label text="Dirección:" />
+                              <Label text="Dirección:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="direccionLabel" />
-                              <Label text="Redes Sociales:" />
+                              <Label text="Redes Sociales:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="redesLabel" />
-                              <Label text="Fechas Importantes:" />
+                              <Label text="Fechas Importantes:">
+                                 <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                 </font></Label>
                               <Label fx:id="fechasLabel" />
                            </children>
                         </VBox>
@@ -68,7 +93,12 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#contactoAnterior" text="Atras" />
+                  <Pane prefHeight="98.0" prefWidth="221.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#contactoSiguiente" text="Seguir" />
+               </children></HBox>
          </children>
       </VBox>
    </children>

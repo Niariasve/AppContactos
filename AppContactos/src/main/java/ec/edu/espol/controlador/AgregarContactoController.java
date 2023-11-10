@@ -97,14 +97,18 @@ public class AgregarContactoController implements Initializable {
         boolean agg = true;
         
         try {           
-            camposLLenadosCorrectamente(nombre,apellido,empresa, telefonos);
-            
-            Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, telefonos, correos, redesSociales, fechas, null, null);
-
+            camposLLenadosCorrectamente(nombre,apellido,empresa, telefonos);                       
         } catch (CampoVacioException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Debe ingresar al menos uno de los tres campos: nombre, apellido, empresa.");
             alert.show();
+            agg = false;
+        }
+        Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, null);
+        if (agg) {
+            ContactosController.contactos.add(nuevoContacto);   
+            salirDeAgregarContacto(event);
+//            ContactosController.introducirEnContactos(nuevoContacto);
         }
     }
 

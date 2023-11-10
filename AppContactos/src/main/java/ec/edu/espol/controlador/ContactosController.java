@@ -26,7 +26,11 @@ import javafx.scene.layout.FlowPane;
  */
 public class ContactosController implements Initializable {
     
-    public static List<Contacto> contactos;
+    //Change for own tda
+    public static List<Contacto> contactos = new ArrayList<>();
+    public static int numContactosAgg = 0;
+    
+    private int contactoMostrado = 0;
 
     @FXML
     private Button editar;
@@ -39,8 +43,6 @@ public class ContactosController implements Initializable {
     @FXML
     private Label apellidosLabel;
     @FXML
-    private Label EmpresaLabel;
-    @FXML
     private Label telefonosLabel;
     @FXML
     private Label correosLabel;
@@ -50,14 +52,25 @@ public class ContactosController implements Initializable {
     private Label redesLabel;
     @FXML
     private Label fechasLabel;
+    @FXML
+    private Label empresaLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Change for own tda
-        contactos = new ArrayList<>();
+        //check if size is the same as sizeActual
+        System.out.println(contactos);       
+        if (numContactosAgg != contactos.size()) {
+            System.out.println("Hay que actualizar la lista");
+            actualizarPantalla(contactos.size() - 1);
+            numContactosAgg++;
+            contactoMostrado = numContactosAgg - 1;
+        } else {            
+            System.out.println("No es necesario actualizar");
+        }
+        System.out.println(contactoMostrado);
     }    
 
     @FXML
@@ -68,6 +81,33 @@ public class ContactosController implements Initializable {
     }
     
     public static void introducirEnContactos(Contacto contacto) {
-        ContactosController.contactos.add(contacto);
+        ContactosController.contactos.add(contacto);          
+    }
+    
+    public void actualizarPantalla(int mostrar) {
+        Contacto contactoActual = contactos.get(mostrar);
+        System.out.println(contactoActual);
+        nombresLabel.setText(contactoActual.getNombre());
+        apellidosLabel.setText(contactoActual.getApellido());
+        empresaLabel.setText(contactoActual.getEmpresa());
+        
+        telefonosLabel.setText(contactoActual.getNumerosTelefonicos().toString());
+        correosLabel.setText(contactoActual.getEmails().toString());
+        redesLabel.setText(contactoActual.getRedesSociales().toString());
+        fechasLabel.setText(contactoActual.getFechasDeInteres().toString());        
+    }
+
+    @FXML
+    private void contactoAnterior(MouseEvent event) {
+        contactoMostrado = contactoMostrado - 1;
+        System.out.println(contactoMostrado);
+        actualizarPantalla(contactoMostrado);
+    }
+
+    @FXML
+    private void contactoSiguiente(MouseEvent event) {
+        contactoMostrado = contactoMostrado + 1;
+        System.out.println(contactoMostrado);
+        actualizarPantalla(contactoMostrado);
     }
 }
