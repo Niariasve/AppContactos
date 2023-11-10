@@ -99,6 +99,11 @@ public class ContactosController implements Initializable {
 
     @FXML
     private void contactoAnterior(MouseEvent event) {
+        /*
+        Este metodo actualmente lanzará excepciones de ArrayOutOfBoundsException
+        esta pensado para en cuando ya este implementada nuestra clase linkedlistcircular
+        funcione correctamnte y no lance ninguna excepcion.
+        */
         contactoMostrado = contactoMostrado - 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
@@ -106,6 +111,11 @@ public class ContactosController implements Initializable {
 
     @FXML
     private void contactoSiguiente(MouseEvent event) {
+        /*
+        Este metodo actualmente lanzará excepciones de ArrayOutOfBoundsException
+        esta pensado para en cuando ya este implementada nuestra clase linkedlistcircular
+        funcione correctamnte y no lance ninguna excepcion.
+        */
         contactoMostrado = contactoMostrado + 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
