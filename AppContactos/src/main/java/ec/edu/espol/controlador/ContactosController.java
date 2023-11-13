@@ -84,6 +84,9 @@ public class ContactosController implements Initializable {
             contactoMostrado = numContactosAgg - 1;
         } else {
             System.out.println("No es necesario actualizar");
+            if (contactos.size() > 0) {
+                actualizarPantalla(0);
+            }
         }
         System.out.println(contactoMostrado);
     }
@@ -198,5 +201,12 @@ public class ContactosController implements Initializable {
         contactoMostrado = contactoMostrado + 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
+    }
+
+    @FXML
+    private void cambiarVistaLista(MouseEvent event) {
+        try {
+            App.setRoot("contactosLista");
+        } catch (IOException ex) {}
     }
 }
