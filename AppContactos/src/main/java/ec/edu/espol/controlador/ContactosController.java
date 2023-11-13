@@ -24,7 +24,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-
 public class ContactosController implements Initializable {
 
     //Change for own tda
@@ -127,22 +126,21 @@ public class ContactosController implements Initializable {
 
         for (int i = 0; i < num; i++) {
             BorderPane contenedor = new BorderPane();
-            if (contactos.get(i).getEmpresa() != null) {
-                Label textoContacto = new Label(contactos.get(i).getEmpresa());
-                BorderPane.setMargin(textoContacto, new javafx.geometry.Insets(15, 0, 15, 0)); // para Margen
-                contenedor.setCenter(textoContacto);
-                contenedor.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+            String textoEmpresa = contactos.get(i).getEmpresa();
+            String textoNombre = contactos.get(i).getNombre() + " " + contactos.get(i).getApellido();
 
-                medio.getChildren().add(contenedor);
+            Label textoContacto;
 
+            if (textoEmpresa != null && !textoEmpresa.isEmpty()) {
+                textoContacto = new Label(textoEmpresa);
             } else {
-                Label textoContacto = new Label(contactos.get(i).getNombre() + " " + contactos.get(i).getApellido());
-                BorderPane.setMargin(textoContacto, new javafx.geometry.Insets(15, 0, 15, 0)); // para Margen
-                contenedor.setCenter(textoContacto);
-                contenedor.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
-
-                medio.getChildren().add(contenedor);
+                textoContacto = new Label(textoNombre);
             }
+
+            BorderPane.setMargin(textoContacto, new javafx.geometry.Insets(15, 0, 15, 0)); // para Margen
+            contenedor.setCenter(textoContacto);
+            contenedor.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+            medio.getChildren().add(contenedor);
 
         }
         ScrollPane lista = new ScrollPane(medio);
@@ -170,7 +168,6 @@ public class ContactosController implements Initializable {
         contenidoOriginal2 = new HBox();
         contenidoOriginal2.getChildren().addAll(parteAbajo.getChildren());
     }
-
 
     private void restaurarContenidoOriginal() {
         parteArriba.getChildren().clear();
