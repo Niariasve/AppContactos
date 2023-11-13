@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightGray;">
+               <children>
+                  <Pane prefHeight="90.0" prefWidth="10.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#cambiarVistaContactos" prefHeight="50.0" prefWidth="90.0" text="Revista" />
+               </children>
+            </HBox>
+            <VBox prefHeight="400.0" prefWidth="100.0">
+               <children>
+                  <ScrollPane fx:id="listaFP" hbarPolicy="NEVER" prefHeight="400.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightGray;">
+               <children>
+                  <Label text="Número de contactos registrados: " />
+                  <Label fx:id="numContactosReg" text="0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>
