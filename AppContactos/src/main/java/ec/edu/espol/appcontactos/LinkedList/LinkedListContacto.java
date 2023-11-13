@@ -17,7 +17,6 @@ public class LinkedListContacto<E> implements List<E> {
 
     private Nodo<E> first;
     private Nodo<E> last;
-    private int size;
 
     private class Nodo<E> {
 
@@ -32,14 +31,28 @@ public class LinkedListContacto<E> implements List<E> {
         }
     }
 
+    public LinkedListContacto() {
+        first = null;
+        last = null;
+    }
+
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (isEmpty()) {
+            return 0;
+        }
+        int size = 1;
+        Nodo<E> tmp = first;
+        while (tmp.sig != first) {
+            size++;
+            tmp = tmp.sig;
+        }
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return first == null;
     }
 
     @Override
