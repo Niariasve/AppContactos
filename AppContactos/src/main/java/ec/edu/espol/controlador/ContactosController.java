@@ -72,7 +72,7 @@ public class ContactosController implements Initializable {
             contactoMostrado = numContactosAgg - 1;
         } else {            
             System.out.println("No es necesario actualizar");
-            if (contactos.size() > 0) {
+            if (!contactos.isEmpty()) {
                 actualizarPantalla(0);
             }
         }
