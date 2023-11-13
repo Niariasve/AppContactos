@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,20 +11,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="400.0">
+      <VBox fx:id="completa" prefHeight="600.0" prefWidth="400.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <HBox prefHeight="90.0" prefWidth="10.0" />
-                        <Button fx:id="editar" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Editar" textOverrun="CLIP" />
+                        <Button fx:id="modoLista" mnemonicParsing="false" onAction="#modoLista" prefHeight="33.0" prefWidth="45.0" text="A-Z" textOverrun="CLIP">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></Button>
+                        <ImageView fx:id="catalogo" onMouseClicked="#modoRevista" fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgs/modo%20catalogo.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
+                        <Button fx:id="editar" mnemonicParsing="false" prefHeight="33.0" prefWidth="71.0" text="Editar" textOverrun="CLIP">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></Button>
                         <ImageView fx:id="agregar" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#entrarAgregarContacto" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/6324460.png" />
@@ -34,9 +47,9 @@
                   <HBox prefHeight="90.0" prefWidth="10.0" />
                </children>
             </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
+            <VBox fx:id="parteArriba" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
                <children>
-                  <Pane prefHeight="25.0" prefWidth="400.0" />
+                  <Pane prefHeight="30.0" prefWidth="395.0" />
                   <ImageView fx:id="actualProfilePic" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imgs/istockphoto-1337144146-612x612.jpg" />
@@ -93,11 +106,11 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+            <HBox fx:id="parteAbajo" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#contactoAnterior" text="Atras" />
+                  <Button fx:id="atras" mnemonicParsing="false" onMouseClicked="#contactoAnterior" text="Atras" />
                   <Pane prefHeight="98.0" prefWidth="221.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#contactoSiguiente" text="Seguir" />
+                  <Button fx:id="seguir" mnemonicParsing="false" onMouseClicked="#contactoSiguiente" text="Seguir" />
                </children></HBox>
          </children>
       </VBox>
