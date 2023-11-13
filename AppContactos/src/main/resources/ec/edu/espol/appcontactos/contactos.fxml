@@ -19,12 +19,13 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <HBox prefHeight="90.0" prefWidth="10.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#cambiarVistaLista" prefHeight="50.0" prefWidth="90.0" text="Lista" textOverrun="CLIP" />
+
+                        <Button fx:id="editar" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Editar" textOverrun="CLIP" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="editar" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="Editar" textOverrun="CLIP" />
+
                         <ImageView fx:id="agregar" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#entrarAgregarContacto" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/6324460.png" />
