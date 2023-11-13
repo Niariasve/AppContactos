@@ -38,8 +38,6 @@ public class ContactosController implements Initializable {
     private int contactoMostrado = 0;
 
     @FXML
-    private Button editar;
-    @FXML
     private ImageView agregar;
     @FXML
     private ImageView actualProfilePic;
