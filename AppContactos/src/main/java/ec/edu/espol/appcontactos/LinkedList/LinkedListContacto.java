@@ -77,7 +77,34 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nodo<E> tmp = new Nodo(e);
+        Nodo<E> nodo = first;
+
+        if (isEmpty()) {
+            first = tmp;
+            last = tmp;
+            first.sig = first;
+            first.ant = first;
+            return true;
+        }
+        while (nodo.sig != first) {
+            nodo = nodo.sig;
+        }
+
+        if (nodo.sig == null) {
+            nodo.ant = null;
+            nodo.sig = tmp.ant;
+            tmp.sig = null;
+
+        }
+        nodo.sig = tmp;
+        tmp.ant = nodo;
+        tmp.sig = first;
+        first.ant = tmp;
+        last = tmp;
+
+        return true;
+
     }
 
     @Override
