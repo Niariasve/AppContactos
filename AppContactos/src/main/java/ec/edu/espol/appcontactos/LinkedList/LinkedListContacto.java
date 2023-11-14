@@ -152,7 +152,38 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index <= 0 || index > this.size()) {
+            System.out.println("No se puede realizar la inserción");
+            return;
+        }
+
+        Nodo<E> tmp = new Nodo(element);
+
+        if (index == 1) {
+            if (first == null) {
+                tmp.sig = tmp;
+                tmp.ant = tmp;
+                first = tmp;
+                last = tmp;
+            } else {
+                tmp.sig = first;
+                tmp.ant = last;
+                first.ant = tmp;
+                last.sig = tmp;
+                first = tmp;
+            }
+            return;
+        }
+
+        Nodo<E> previo = first;
+        for (int i = 1; i < index - 1; i++) {
+            previo = previo.sig;
+        }
+
+        tmp.sig = previo.sig;
+        tmp.ant = previo;
+        previo.sig.ant = tmp;
+        previo.sig = tmp;
     }
 
     @Override
