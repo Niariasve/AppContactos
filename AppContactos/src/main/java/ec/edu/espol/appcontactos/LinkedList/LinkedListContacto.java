@@ -90,12 +90,10 @@ public class LinkedListContacto<E> implements List<E> {
         while (nodo.sig != first) {
             nodo = nodo.sig;
         }
-
         if (nodo.sig == null) {
             nodo.ant = null;
             nodo.sig = tmp.ant;
             tmp.sig = null;
-
         }
         nodo.sig = tmp;
         tmp.ant = nodo;
