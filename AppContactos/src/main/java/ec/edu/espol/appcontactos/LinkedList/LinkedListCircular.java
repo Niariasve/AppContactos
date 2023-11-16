@@ -14,7 +14,6 @@ import java.util.NoSuchElementException;
  *
  * @author alexc
  */
-package ec.edu.espol.appcontactos.LinkedList;
 
 import java.util.Collection;
 import java.util.Iterator;
