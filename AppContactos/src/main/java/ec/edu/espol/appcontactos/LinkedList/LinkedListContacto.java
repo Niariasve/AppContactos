@@ -54,15 +54,6 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public int size() {
-        if (isEmpty()) {
-            return 0;
-        }
-        int size = 1;
-        Nodo<E> tmp = first;
-        while (tmp.sig != first) {
-            size++;
-            tmp = tmp.sig;
-        }
         return size;
     }
 
@@ -102,12 +93,10 @@ public class LinkedListContacto<E> implements List<E> {
             size++;
             return true;
         }
-        Nodo<E> nodo = last;
-        
+        Nodo<E> nodo = last;       
         last = tmp;
         tmp.sig = first;
-        nodo.sig = tmp;
-        
+        nodo.sig = tmp;       
         size++;
         return true;
     }
