@@ -36,7 +36,7 @@ public class ContactosListaController implements Initializable {
     @FXML
     private Label numContactosReg;
     @FXML
-    private ImageView agregar;
+    private HBox modoRevista;
 
     /**
      * Initializes the controller class.
@@ -83,21 +83,17 @@ public class ContactosListaController implements Initializable {
     }
 
     @FXML
-    private void cambiarVistaContactos(MouseEvent event
-    ) {
+    private void cambiarVistaContactos(MouseEvent event) {
         try {
             App.setRoot("contactos");
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @FXML
-    private void entrarAgregar(MouseEvent ev
-    ) {
-        try {
+    private void entrarAgregar(MouseEvent event) {
+        try {            
             App.setRoot("agregarContacto");
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
 }
