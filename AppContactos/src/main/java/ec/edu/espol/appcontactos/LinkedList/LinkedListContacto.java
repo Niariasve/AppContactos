@@ -145,7 +145,9 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        first = null;
+        last = null;
+        size = 0;
     }
 
     @Override
@@ -190,7 +192,41 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index < 0 || index > size - 1)
+            throw new IndexOutOfBoundsException();
+        if (index != 0 && index != size - 1) {
+            Nodo<E> nodo = first;
+            for (int i = 0; i < index; i++) {
+                nodo = nodo.sig;
+            }
+            Nodo<E> tmpSig = nodo.sig;
+            Nodo<E> tmpAnt = nodo.ant;
+            tmpSig.ant = tmpAnt;
+            tmpAnt.sig = tmpSig;
+            size--;
+            return nodo.contenido;
+        } else if (index == 0)
+            return removeFirst();
+        else
+            return removeLast();
+    }
+    
+    public E removeLast() {
+        E elem = first.contenido;
+        first.ant = last.ant;
+        last.ant.sig = first;
+        last = last.ant;
+        size--;
+        return elem;
+    }
+    
+    public E removeFirst() {
+        E elem = last.contenido;
+        last.sig = first.sig;
+        first.sig.ant = last;
+        first = first.sig;
+        size--;
+        return elem;
     }
 
     @Override
