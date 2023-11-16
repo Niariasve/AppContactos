@@ -71,7 +71,12 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (E e : this) {
+            if (e.equals(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
