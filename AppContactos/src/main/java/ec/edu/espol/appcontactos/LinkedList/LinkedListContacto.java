@@ -31,6 +31,11 @@ public class LinkedListContacto<E> implements List<E> {
             this.sig = sig;
             this.ant = ant;
         }
+        
+        @Override
+        public String toString() {
+            return "[Anterior: " + this.ant.contenido + ", Elemento: " + this.contenido + ", Siguiente: " + this.sig.contenido + "]";
+        }
     }
     
     private class Iterador implements Iterator {
@@ -52,11 +57,6 @@ public class LinkedListContacto<E> implements List<E> {
             return f.contenido;
         }
         
-    }
-
-    public LinkedListContacto() {
-        first = null;
-        last = null;
     }
 
     @Override
