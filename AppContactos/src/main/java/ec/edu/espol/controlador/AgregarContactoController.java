@@ -74,18 +74,19 @@ public class AgregarContactoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void salirDeAgregarContacto(MouseEvent event) {
         try {
             App.setRoot("contactos");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
 
     @FXML
     private void agregarContacto(MouseEvent event) {
-        String nombre = nombreTf.getText();      
+        String nombre = nombreTf.getText();
         String apellido = apellidoTf.getText();
         String empresa = empresaTf.getText();
         String direccion = direccionTf.getText();
@@ -93,11 +94,11 @@ public class AgregarContactoController implements Initializable {
         List<String> correos = getCorreos();
         List<String> redesSociales = getRedesSociales();
         List<String> fechas = getFechas();
-        
+
         boolean agg = true;
-        
-        try {           
-            camposLLenadosCorrectamente(nombre,apellido,empresa, telefonos);                       
+
+        try {
+            camposLLenadosCorrectamente(nombre, apellido, empresa, telefonos);
         } catch (CampoVacioException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Debe ingresar al menos uno de los tres campos: nombre, apellido, empresa.");
@@ -106,18 +107,28 @@ public class AgregarContactoController implements Initializable {
         }
         Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, null);
         if (agg) {
-            ContactosController.contactos.add(nuevoContacto);   
+            ContactosController.contactos.add(nuevoContacto);
             salirDeAgregarContacto(event);
 //            ContactosController.introducirEnContactos(nuevoContacto);
         }
     }
 
     @FXML
-    private void cambiarFotoDePerfil(MouseEvent event) {
+    private void agregarFotoPerfil(MouseEvent event) {
+        try {
+            App.setRoot("CambiarFoto");
+        } catch (IOException ex) {
+        }
+
     }
 
     @FXML
-    private void agregarTelefono(MouseEvent event) {             
+    private void cambiarFotoDePerfil(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void agregarTelefono(MouseEvent event) {
         telefonosFP.getChildren().add(newTextField("Telefono"));
     }
 
@@ -139,58 +150,59 @@ public class AgregarContactoController implements Initializable {
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
     }
-    
-    private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException{
-        if (nombre.equals("") && apellido.equals("") && empresa.equals("")) {          
+
+    private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
+        if (nombre.equals("") && apellido.equals("") && empresa.equals("")) {
             throw new CampoVacioException();
         }
     }
-    
-    private List<String> getTelefonos() {                    
+
+    private List<String> getTelefonos() {
         return nodeListToStringList(telefonosFP.getChildren());
     }
-    
+
     private List<String> getCorreos() {
         return nodeListToStringList(correosFP.getChildren());
     }
-    
+
     private List<String> getRedesSociales() {
         return nodeListToStringList(redesSocialesFP.getChildren());
     }
-    
+
     private List<String> getFechas() {
         return nodeListToStringList(fechasFP.getChildren());
     }
-    
+
     private List<String> nodeListToStringList(List<Node> nodeList) {
         //Change for own tda
         /*
         Crea una lista de Strings a partir de un lista de Nodos (TextField)
         para poder extraer los datos y poder crear la instancia de contacto e introducirla en
         la lista de contactos
-        */
+         */
         List<String> stringList = new ArrayList<>();
-        
+
         for (Node node : nodeList) {
             if (node instanceof TextField) {
                 TextField tf = (TextField) node;
-                if (!tf.getText().equals(""))
+                if (!tf.getText().equals("")) {
                     stringList.add(tf.getText());
+                }
             }
-        }        
+        }
         return stringList;
     }
-    
+
     private TextField newTextField(String promptText) {
         /*
         Este metodo crea un TextField con un prompText que recibe como parámetro
         para facilitar la creación de los TextFields donde se van a introducir los datos
-        */
+         */
         TextField tf = new TextField();
         tf.setPromptText(promptText);
         tf.setPrefWidth(290);
-        
+
         return tf;
     }
-    
+
 }
