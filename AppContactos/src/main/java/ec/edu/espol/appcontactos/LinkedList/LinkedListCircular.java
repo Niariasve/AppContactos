@@ -8,15 +8,29 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  *
  * @author alexc
  */
-public class LinkedListContacto<E> implements List<E> {
+package ec.edu.espol.appcontactos.LinkedList;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+/**
+ *
+ * @author alexc
+ */
+public class LinkedListCircular<E> implements List<E> {
 
     private Nodo<E> first;
     private Nodo<E> last;
+    private int size;
 
     private class Nodo<E> {
 
@@ -24,29 +38,43 @@ public class LinkedListContacto<E> implements List<E> {
         private Nodo<E> sig;
         private Nodo<E> ant;
 
-        public Nodo(E e) { //constructor de una lista sin anidar 
+        public Nodo(Nodo<E> ant, E e, Nodo<E> sig) { //constructor de una lista sin anidar 
             contenido = e;
-            sig = null;
-            ant = null;
+            this.sig = sig;
+            this.ant = ant;
+        }
+
+        @Override
+        public String toString() {
+            return "[Anterior: " + this.ant.contenido + ", Elemento: " + this.contenido + ", Siguiente: " + this.sig.contenido + "]";
         }
     }
 
-    public LinkedListContacto() {
-        first = null;
-        last = null;
+    private class Iterador implements Iterator {
+
+        private int itr = 0;
+
+        @Override
+        public boolean hasNext() {
+            return itr < size;
+        }
+
+        @Override
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Nodo<E> f = first;
+            for (int i = 0; i < itr; i++) {
+                f = f.sig;
+            }
+            return f.contenido;
+        }
+
     }
 
     @Override
     public int size() {
-        if (isEmpty()) {
-            return 0;
-        }
-        int size = 1;
-        Nodo<E> tmp = first;
-        while (tmp.sig != first) {
-            size++;
-            tmp = tmp.sig;
-        }
         return size;
     }
 
@@ -57,12 +85,17 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (E e : this) {
+            if (e.equals(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new Iterador();
     }
 
     @Override
@@ -77,37 +110,35 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        Nodo<E> tmp = new Nodo(e);
-        Nodo<E> nodo = first;
-
+        Nodo<E> tmp = new Nodo(last, e, first);
         if (isEmpty()) {
             first = tmp;
             last = tmp;
-            first.sig = first;
-            first.ant = first;
+            tmp.sig = tmp;
+            tmp.ant = tmp;
+            size++;
             return true;
         }
-        while (nodo.sig != first) {
-            nodo = nodo.sig;
-        }
-        if (nodo.sig == null) {
-            nodo.ant = null;
-            nodo.sig = tmp.ant;
-            tmp.sig = null;
-        }
-        nodo.sig = tmp;
-        tmp.ant = nodo;
-        tmp.sig = first;
-        first.ant = tmp;
+        Nodo<E> nodo = last;
         last = tmp;
-
+        tmp.sig = first;
+        nodo.sig = tmp;
+        size++;
         return true;
-
     }
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int index = 0;
+        Nodo<E> nodo = first;
+        for (E e : this) {
+            if (e.equals(o)) {
+                remove(0);
+                return true;
+            }
+            index++;
+        }
+        return false;
     }
 
     @Override
@@ -137,58 +168,101 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        first = null;
+        last = null;
+        size = 0;
     }
 
     @Override
     public E get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index < 0 || index > size - 1) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        Nodo<E> tmp = first;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.sig;
+        }
+        return tmp.contenido;
     }
 
     @Override
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (isEmpty() || index < 0 || index >= size()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        Nodo<E> tmp = first;
+        for (int i = 0; i < index; i++) {
+            tmp=tmp.sig;
+        }
+        E previus=tmp.contenido;
+        tmp.contenido=element;
+        return previus;
+        
     }
 
     @Override
     public void add(int index, E element) {
         if (index <= 0 || index > this.size()) {
-            System.out.println("No se puede realizar la inserción");
-            return;
+            throw new ArrayIndexOutOfBoundsException();
         }
 
-        Nodo<E> tmp = new Nodo(element);
-
-        if (index == 1) {
-            if (first == null) {
-                tmp.sig = tmp;
-                tmp.ant = tmp;
-                first = tmp;
-                last = tmp;
-            } else {
-                tmp.sig = first;
-                tmp.ant = last;
-                first.ant = tmp;
-                last.sig = tmp;
-                first = tmp;
+        if (index != 0) {
+            Nodo<E> tmp = first;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.sig;
             }
-            return;
+            Nodo<E> tmpAnt = tmp.ant;
+            Nodo<E> nuevoNodo = new Nodo(tmpAnt, element, tmp);
+            tmpAnt.sig = nuevoNodo;
+            tmp.ant = nuevoNodo;
+        } else {
+            Nodo<E> nuevoNodo = new Nodo(last, element, first);
+            first.ant = nuevoNodo;
+            last.sig = nuevoNodo;
+            first = nuevoNodo;
         }
-
-        Nodo<E> previo = first;
-        for (int i = 1; i < index - 1; i++) {
-            previo = previo.sig;
-        }
-
-        tmp.sig = previo.sig;
-        tmp.ant = previo;
-        previo.sig.ant = tmp;
-        previo.sig = tmp;
+        size++;
     }
 
     @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index != 0 && index != size - 1) {
+            Nodo<E> nodo = first;
+            for (int i = 0; i < index; i++) {
+                nodo = nodo.sig;
+            }
+            Nodo<E> tmpSig = nodo.sig;
+            Nodo<E> tmpAnt = nodo.ant;
+            tmpSig.ant = tmpAnt;
+            tmpAnt.sig = tmpSig;
+            size--;
+            return nodo.contenido;
+        } else if (index == 0) {
+            return removeFirst();
+        } else {
+            return removeLast();
+        }
+    }
+
+    public E removeLast() {
+        E elem = first.contenido;
+        first.ant = last.ant;
+        last.ant.sig = first;
+        last = last.ant;
+        size--;
+        return elem;
+    }
+
+    public E removeFirst() {
+        E elem = last.contenido;
+        last.sig = first.sig;
+        first.sig.ant = last;
+        first = first.sig;
+        size--;
+        return elem;
     }
 
     @Override
