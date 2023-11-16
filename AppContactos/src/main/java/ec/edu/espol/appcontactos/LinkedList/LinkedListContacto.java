@@ -150,7 +150,13 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (index < 0 || index > size - 1)
+            throw new ArrayIndexOutOfBoundsException();
+        Nodo<E> tmp = first;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.sig;
+        }
+        return tmp.contenido;
     }
 
     @Override
