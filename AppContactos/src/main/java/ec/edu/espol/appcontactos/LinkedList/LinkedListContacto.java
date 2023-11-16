@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -42,7 +43,13 @@ public class LinkedListContacto<E> implements List<E> {
 
         @Override
         public Object next() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            if(!hasNext())
+                throw new NoSuchElementException();
+            Nodo<E> f = first;
+            for (int i = 0; i < itr; i++) {
+                f = f.sig;
+            }
+            return f.contenido;
         }
         
     }
@@ -69,7 +76,7 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new Iterador();
     }
 
     @Override
@@ -152,33 +159,22 @@ public class LinkedListContacto<E> implements List<E> {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        Nodo<E> tmp = new Nodo(element);
-
-        if (index == 1) {
-            if (first == null) {
-                tmp.sig = tmp;
-                tmp.ant = tmp;
-                first = tmp;
-                last = tmp;
-            } else {
-                tmp.sig = first;
-                tmp.ant = last;
-                first.ant = tmp;
-                last.sig = tmp;
-                first = tmp;
+        if (index != 0) {
+            Nodo<E> tmp = first;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.sig;
             }
-            return;
+            Nodo<E> tmpAnt = tmp.ant;
+            Nodo<E> nuevoNodo = new Nodo(tmpAnt, element, tmp);
+            tmpAnt.sig = nuevoNodo;
+            tmp.ant = nuevoNodo;
+        } else {
+            Nodo<E> nuevoNodo = new Nodo(last, element, first);
+            first.ant = nuevoNodo;
+            last.sig = nuevoNodo;
+            first = nuevoNodo;
         }
-
-        Nodo<E> previo = first;
-        for (int i = 1; i < index - 1; i++) {
-            previo = previo.sig;
-        }
-
-        tmp.sig = previo.sig;
-        tmp.ant = previo;
-        previo.sig.ant = tmp;
-        previo.sig = tmp;
+        size++;
     }
 
     @Override
