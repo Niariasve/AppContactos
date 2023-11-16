@@ -5,11 +5,13 @@
 package ec.edu.espol.controlador;
 
 import ec.edu.espol.appcontactos.App;
+import static ec.edu.espol.controlador.ContactosController.contactos;
 import ec.edu.espol.modelo.Contacto;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -43,39 +45,37 @@ public class ContactosListaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         List<Contacto> contactos = ContactosController.contactos;
+        
+        numContactosReg.setText(String.valueOf(contactos.size()));
+
         VBox medio = new VBox();
+        medio.setSpacing(2); // ESPACIADO
         int num = contactos.size();
-        numContactosReg.setText(String.valueOf(num));
 
         for (int i = 0; i < num; i++) {
-            BorderPane contenedor = new BorderPane();
-            Label textoContacto = new Label();
+            VBox contenedor = new VBox();
+            contenedor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"); // ESTILO DEL CONTENEDOR
+            contenedor.setPrefSize(395, 40); // TAMANO DEL CONTENEDOR 
+            contenedor.setAlignment(Pos.CENTER_LEFT); //ALINEACION IZQ CENTRO
 
             String nombreCompleto;
-
             if (contactos.get(i).getEmpresa() != null && !contactos.get(i).getEmpresa().isEmpty()) {
-
                 nombreCompleto = contactos.get(i).getEmpresa();
 
             } else {
-
                 nombreCompleto = contactos.get(i).getNombre() + " " + contactos.get(i).getApellido();
 
             }
 
-            textoContacto = new Label(nombreCompleto);
-
-            BorderPane.setMargin(textoContacto, new javafx.geometry.Insets(20, 0, 20, 0)); // para Margen
-            contenedor.setCenter(textoContacto);
-            contenedor.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
-            contenedor.setAlignment(textoContacto, Pos.CENTER_LEFT);
-
+            Label textoContacto = new Label(nombreCompleto);
+            textoContacto.setFont(Font.font("Segoe UI", 14));  // FUENTE DE LETRA 
+            contenedor.getChildren().add(textoContacto);
             medio.getChildren().add(contenedor);
+            
 
-   
-            HBox.setHgrow(contenedor, Priority.ALWAYS);
-
+            
         }
 
         listaFP.setContent(medio);
@@ -83,17 +83,26 @@ public class ContactosListaController implements Initializable {
     }
 
     @FXML
-    private void cambiarVistaContactos(MouseEvent event) {
+    private void cambiarVistaContactos(MouseEvent event
+    ) {
         try {
             App.setRoot("contactos");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
 
     @FXML
-    private void entrarAgregar(MouseEvent event) {
-        try {            
+    private void entrarAgregar(MouseEvent event
+    ) {
+        try {
             App.setRoot("agregarContacto");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
+    
+    
+
+    
+    
 
 }
