@@ -17,6 +17,7 @@ public class LinkedListContacto<E> implements List<E> {
 
     private Nodo<E> first;
     private Nodo<E> last;
+    private int size;
 
     private class Nodo<E> {
 
@@ -24,11 +25,26 @@ public class LinkedListContacto<E> implements List<E> {
         private Nodo<E> sig;
         private Nodo<E> ant;
 
-        public Nodo(E e) { //constructor de una lista sin anidar 
+        public Nodo(Nodo<E> ant, E e, Nodo<E> sig) { //constructor de una lista sin anidar 
             contenido = e;
-            sig = null;
-            ant = null;
+            this.sig = sig;
+            this.ant = ant;
         }
+    }
+    
+    private class Iterador implements Iterator {
+        private int itr = 0;
+
+        @Override
+        public boolean hasNext() {
+            return itr < size;
+        }
+
+        @Override
+        public Object next() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+        
     }
 
     public LinkedListContacto() {
@@ -77,32 +93,23 @@ public class LinkedListContacto<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        Nodo<E> tmp = new Nodo(e);
-        Nodo<E> nodo = first;
-
+        Nodo<E> tmp = new Nodo(last, e, first);
         if (isEmpty()) {
             first = tmp;
             last = tmp;
-            first.sig = first;
-            first.ant = first;
+            tmp.sig = tmp;
+            tmp.ant = tmp;
+            size++;
             return true;
         }
-        while (nodo.sig != first) {
-            nodo = nodo.sig;
-        }
-        if (nodo.sig == null) {
-            nodo.ant = null;
-            nodo.sig = tmp.ant;
-            tmp.sig = null;
-        }
-        nodo.sig = tmp;
-        tmp.ant = nodo;
-        tmp.sig = first;
-        first.ant = tmp;
+        Nodo<E> nodo = last;
+        
         last = tmp;
-
+        tmp.sig = first;
+        nodo.sig = tmp;
+        
+        size++;
         return true;
-
     }
 
     @Override
