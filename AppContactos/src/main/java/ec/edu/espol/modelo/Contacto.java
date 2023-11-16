@@ -118,4 +118,10 @@ public class Contacto {
     public void setFotos(List<Foto> Fotos) {
         this.Fotos = Fotos;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        //TODO
+        throw new UnsupportedOperationException();
+    }
 }
