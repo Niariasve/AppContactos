@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  *
  * @author alexc
  */
-public class LinkedListContacto<E> implements List<E> {
+public class LinkedListCircular<E> implements List<E> {
 
     private Nodo<E> first;
     private Nodo<E> last;
