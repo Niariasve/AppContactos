@@ -153,8 +153,7 @@ public class LinkedListContacto<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         if (index <= 0 || index > this.size()) {
-            System.out.println("No se puede realizar la inserción");
-            return;
+            throw new ArrayIndexOutOfBoundsException();
         }
 
         Nodo<E> tmp = new Nodo(element);
