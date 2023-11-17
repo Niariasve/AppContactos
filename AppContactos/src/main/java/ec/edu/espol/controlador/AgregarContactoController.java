@@ -113,18 +113,14 @@ public class AgregarContactoController implements Initializable {
         }
     }
 
+    
+
     @FXML
-    private void agregarFotoPerfil(MouseEvent event) {
+    private void cambiarFotoDePerfil(MouseEvent event) {
         try {
             App.setRoot("CambiarFoto");
         } catch (IOException ex) {
         }
-
-    }
-
-    @FXML
-    private void cambiarFotoDePerfil(MouseEvent event) {
-
     }
 
     @FXML
