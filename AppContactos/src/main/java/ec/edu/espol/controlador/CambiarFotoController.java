@@ -45,10 +45,13 @@ public class CambiarFotoController implements Initializable {
     }
     
     private void cargarListaFoto(){
+        int cantidadDeFotos = 5; 
         listaFotos = new LinkedList<>();
-        listaFotos.add(new Foto("ruta1.jpg"));
-        listaFotos.add(new Foto("ruta2.jpg"));
-        listaFotos.add(new Foto("ruta3.jpg"));
+
+        for (int i = 1; i <= cantidadDeFotos; i++) {
+            String persona = "Persona" + i + ".jpg";
+            listaFotos.add(new Foto(persona));
+        }
     }
     
     
