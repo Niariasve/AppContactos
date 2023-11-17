@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -28,24 +29,30 @@ public class CambiarFotoController implements Initializable {
      */
     private List<Foto> listaFotos;
     
-    private HBox fotosHBox; 
+    private VBox fotosVbox;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cargarListaFoto(); 
+        HBox fotosHBox = new HBox(); 
+        
         fotosHBox.getChildren().clear();
         for(Foto foto: listaFotos){
-            ImageView imageView = new ImageView(new Image(foto.getUrl()));
+            String rutaImagen = "/ec/edu/espol.imgsPerfiles/" + foto.getUrl();
+            ImageView imageView = new ImageView(new Image(getClass().getResource(rutaImagen).toExternalForm()));
             imageView.setFitHeight(80);
-            imageView.setFitWidth(80);  
+            imageView.setFitWidth(80); 
+            
             fotosHBox.getChildren().add(imageView);
+            
         }
+        fotosVbox.getChildren().add(fotosHBox);
     }
     
     private void cargarListaFoto(){
-        int cantidadDeFotos = 5; 
+        int cantidadDeFotos = 4; 
         listaFotos = new LinkedList<>();
 
         for (int i = 1; i <= cantidadDeFotos; i++) {
