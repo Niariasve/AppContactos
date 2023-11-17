@@ -40,7 +40,7 @@ public class CambiarFotoController implements Initializable {
         
         fotosHBox.getChildren().clear();
         for(Foto foto: listaFotos){
-            String rutaImagen = "/ec/edu/espol.imgsPerfiles/" + foto.getUrl();
+            String rutaImagen = "/ec/edu/espol/imgsPerfiles/" + foto.getUrl();
             ImageView imageView = new ImageView(new Image(getClass().getResource(rutaImagen).toExternalForm()));
             imageView.setFitHeight(80);
             imageView.setFitWidth(80); 
