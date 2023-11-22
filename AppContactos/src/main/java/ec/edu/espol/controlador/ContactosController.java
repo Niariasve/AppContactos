@@ -5,6 +5,7 @@
 package ec.edu.espol.controlador;
 
 import ec.edu.espol.appcontactos.App;
+import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
 import ec.edu.espol.modelo.Contacto;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class ContactosController implements Initializable {
 
     //Change for own tda
-    public static List<Contacto> contactos = new ArrayList<>();
+    public static List<Contacto> contactos = new LinkedListCircular<>();
     public static int numContactosAgg = 0;
 
     private int contactoMostrado = 0;
@@ -89,17 +90,21 @@ public class ContactosController implements Initializable {
         ContactosController.contactos.add(contacto);
     }
 
-    public void actualizarPantalla(int mostrar) {
-        Contacto contactoActual = contactos.get(mostrar);
-        System.out.println(contactoActual);
-        nombresLabel.setText(contactoActual.getNombre());
-        apellidosLabel.setText(contactoActual.getApellido());
-        empresaLabel.setText(contactoActual.getEmpresa());
+    public void actualizarPantalla(int mostrar) {       
+        if (!contactos.isEmpty()) {
+            Contacto contactoActual = contactos.get(mostrar);
+            if (contactoActual != null) {
+                System.out.println(contactoActual);
+                nombresLabel.setText(contactoActual.getNombre());
+                apellidosLabel.setText(contactoActual.getApellido());
+                empresaLabel.setText(contactoActual.getEmpresa());
 
-        telefonosLabel.setText(contactoActual.getNumerosTelefonicos().toString());
-        correosLabel.setText(contactoActual.getEmails().toString());
-        redesLabel.setText(contactoActual.getRedesSociales().toString());
-        fechasLabel.setText(contactoActual.getFechasDeInteres().toString());
+                telefonosLabel.setText(contactoActual.getNumerosTelefonicos().toString());
+                correosLabel.setText(contactoActual.getEmails().toString());
+                redesLabel.setText(contactoActual.getRedesSociales().toString());
+                fechasLabel.setText(contactoActual.getFechasDeInteres().toString());
+            }
+        }
     }
 
     @FXML

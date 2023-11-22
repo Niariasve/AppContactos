@@ -161,11 +161,16 @@ public class LinkedListCircular<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index < 0 || index > size - 1)
-            throw new ArrayIndexOutOfBoundsException();
+//        if (index < 0 || index > size - 1)
+//            throw new ArrayIndexOutOfBoundsException();
         Nodo<E> tmp = first;
-        for (int i = 0; i < index; i++) {
-            tmp = tmp.sig;
+        if (index > 0) {
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.sig;
+            }
+            return tmp.contenido;
+        } else if (index < 0){
+            return this.get(size - index);           
         }
         return tmp.contenido;
     }

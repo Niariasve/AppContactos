@@ -108,7 +108,6 @@ public class AgregarContactoController implements Initializable {
         if (agg) {
             ContactosController.contactos.add(nuevoContacto);   
             salirDeAgregarContacto(event);
-//            ContactosController.introducirEnContactos(nuevoContacto);
         }
     }
 
