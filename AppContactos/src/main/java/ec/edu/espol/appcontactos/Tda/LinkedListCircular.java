@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.espol.appcontactos.LinkedList;
+package ec.edu.espol.appcontactos.Tda;
 
 import java.util.Collection;
 import java.util.Iterator;
