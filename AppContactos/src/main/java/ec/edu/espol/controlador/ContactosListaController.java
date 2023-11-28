@@ -5,10 +5,14 @@
 package ec.edu.espol.controlador;
 
 import ec.edu.espol.appcontactos.App;
+import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
+import ec.edu.espol.appcontactos.Tda.MyArrayList;
 import static ec.edu.espol.controlador.ContactosController.contactos;
 import ec.edu.espol.modelo.Contacto;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
@@ -32,6 +36,8 @@ import javafx.scene.text.Font;
  * @author User
  */
 public class ContactosListaController implements Initializable {
+    
+    private static MyArrayList<Contacto> contactos = new MyArrayList<>();
 
     @FXML
     private ScrollPane listaFP;
@@ -45,8 +51,16 @@ public class ContactosListaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Hello?");
 
-        List<Contacto> contactos = ContactosController.contactos;
+        LinkedListCircular<Contacto> c = ContactosController.contactos;
+        if (c.size() != contactos.size()) {
+            System.out.println("???");                    
+            for (int i = contactos.size(); i < ContactosController.numContactosAgg; i++) {
+                contactos.add(c.get(i));
+            }
+            contactos.sort((Contacto c1, Contacto c2) -> c1.compareTo(c2));
+        }
         
         numContactosReg.setText(String.valueOf(contactos.size()));
 

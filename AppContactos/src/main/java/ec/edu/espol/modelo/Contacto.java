@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author alexc
  */
-public class Contacto {
+public class Contacto implements Comparable{
 
     private String nombre;
     private String apellido;
@@ -123,5 +123,15 @@ public class Contacto {
     public boolean equals(Object o) {
         //TODO
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int compareTo(Object o) {       
+        Contacto other = (Contacto)o;
+        
+        if (this.nombre.equals(other.nombre)) {
+            return this.apellido.compareTo(other.apellido);
+        }
+        return this.nombre.compareTo(other.nombre);
     }
 }

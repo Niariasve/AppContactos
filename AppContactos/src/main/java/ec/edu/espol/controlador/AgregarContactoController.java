@@ -106,7 +106,7 @@ public class AgregarContactoController implements Initializable {
         }
         Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, null);
         if (agg) {
-            ContactosController.contactos.add(nuevoContacto);   
+            ContactosController.contactos.add(nuevoContacto);  
             salirDeAgregarContacto(event);
         }
     }

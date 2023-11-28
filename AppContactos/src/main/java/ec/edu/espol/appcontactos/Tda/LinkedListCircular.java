@@ -4,8 +4,13 @@
  */
 package ec.edu.espol.appcontactos.Tda;
 
+import ec.edu.espol.modelo.Contacto;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
@@ -54,6 +59,7 @@ public class LinkedListCircular<E> implements List<E> {
             for (int i = 0; i < itr; i++) {
                 f = f.sig;
             }
+            itr++;
             return f.contenido;
         }
         
@@ -86,7 +92,13 @@ public class LinkedListCircular<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Object[] array = new Object[size];
+        Nodo<E> tmp = first;
+        for (int i = 0; i < size; i++) {
+            array[i] = tmp;
+            tmp = tmp.sig;
+        }
+        return array;
     }
 
     @Override
@@ -267,5 +279,5 @@ public class LinkedListCircular<E> implements List<E> {
     public List<E> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
 }

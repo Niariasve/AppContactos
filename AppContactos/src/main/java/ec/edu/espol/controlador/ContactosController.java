@@ -31,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class ContactosController implements Initializable {
 
     //Change for own tda
-    public static List<Contacto> contactos = new LinkedListCircular<>();
+    public static LinkedListCircular<Contacto> contactos = new LinkedListCircular<>();
     public static int numContactosAgg = 0;
 
     private int contactoMostrado = 0;
@@ -76,6 +76,7 @@ public class ContactosController implements Initializable {
             }
         }
         System.out.println(contactoMostrado);
+        System.out.println(numContactosAgg);       
     }
 
     @FXML
