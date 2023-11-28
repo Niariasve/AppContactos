@@ -1,11 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.EditarContactoController">
-    
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.AgregarContactoController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="90.0" prefWidth="9.0" />
+                        <Button fx:id="exit" mnemonicParsing="false" onMouseClicked="#salirDeAgregarContacto" prefHeight="50.0" prefWidth="90.0" text="&lt; Atras" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="editar" mnemonicParsing="false" onMouseClicked="#agregarContacto" prefHeight="50.0" prefWidth="90.0" text="Editar" />
+                        <HBox prefHeight="90.0" prefWidth="10.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <FlowPane prefHeight="400.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/istockphoto-1337144146-612x612.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <Button fx:id="CambiarFoto" mnemonicParsing="false" onMouseClicked="#cambiarFotoDePerfil" prefHeight="25.0" prefWidth="90.0" text="Agregar foto" />
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="75.0" prefWidth="400.0">
+                           <children>
+                              <TextField fx:id="nombreTf" prefWidth="400.0" promptText="Nombres" />
+                              <TextField fx:id="apellidoTf" promptText="Apellidos" />
+                              <TextField fx:id="empresaTf" promptText="Empresa" />
+                              <TextField fx:id="direccionTf" promptText="Dirección" />
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: lightgray;" />
+                        <HBox prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <FlowPane fx:id="telefonosFP" prefHeight="50.0" prefWidth="290.0">
+                                 <children>
+                                    <TextField fx:id="telefonoTf" prefWidth="290.0" promptText="Telefono" />
+                                 </children>
+                              </FlowPane>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#agregarTelefono" text="+" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: lightgray;" />
+                        <HBox prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <FlowPane fx:id="correosFP" prefHeight="50.0" prefWidth="290.0">
+                                 <children>
+                                    <TextField fx:id="correoTf" prefWidth="290.0" promptText="Correo Electrónico" />
+                                 </children>
+                              </FlowPane>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#agregarCorreo" text="+" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: lightgray;" />
+                        <HBox prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <FlowPane fx:id="redesSocialesFP" prefHeight="25.0" prefWidth="290.0">
+                                 <children>
+                                    <TextField fx:id="redesSocialesTf" prefWidth="290.0" promptText="Red Social" />
+                                 </children>
+                              </FlowPane>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#agregarRedSocial" text="+" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: lightgray;" />
+                        <HBox prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <FlowPane fx:id="fechasFP" prefHeight="25.0" prefWidth="290.0">
+                                 <children>
+                                    <TextField fx:id="fechasTf" prefWidth="290.0" promptText="Fechas" />
+                                 </children>
+                              </FlowPane>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#agregarFecha" text="+" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="30.0" prefWidth="400.0" style="-fx-background-color: lightgray;" />
+                        <HBox prefHeight="25.0" prefWidth="400.0">
+                           <children>
+                              <FlowPane fx:id="contactosRelacionadosFP" prefWidth="290.0">
+                                 <children>
+                                    <TextField fx:id="contactosRelacionadosTf" prefWidth="290.0" promptText="Contacto " />
+                                 </children>
+                              </FlowPane>
+                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="agregarContactoRelacionadoBoton" mnemonicParsing="false" onMouseClicked="#agregarContactoRelacionado" text="+" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="15.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>
