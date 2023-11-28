@@ -130,7 +130,7 @@ public class AgregarContactoController implements Initializable {
         if (PhotoSelect != null) {
             Image selected = new Image(PhotoSelect.toURI().toString());
             profilePicture.setImage(selected);
-            String url = "src/main/resources/ec/edu/espol/imgs/";
+            String url = "src/main/resources/ec/edu/espol/imgs/contactos/";
             File guardado = new File(url);
             
             if(!guardado.exists()){
