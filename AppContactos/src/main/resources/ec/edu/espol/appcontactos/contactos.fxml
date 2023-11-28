@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
    <children>
       <VBox prefHeight="600.0" prefWidth="400.0">
          <children>
@@ -94,6 +94,7 @@
                                     <Font name="Eras Demi ITC" size="12.0" />
                                  </font></Label>
                               <Label fx:id="fechasLabel" />
+                              <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
                            </children>
                         </VBox>
                      </content>
