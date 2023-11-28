@@ -136,8 +136,7 @@ public class ContactosController implements Initializable {
     private void cambiarVistaLista(MouseEvent event) {
         try {
             App.setRoot("contactosLista");
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @FXML
