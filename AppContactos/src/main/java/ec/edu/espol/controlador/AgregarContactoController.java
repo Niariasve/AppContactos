@@ -172,6 +172,7 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
+        contactosRelacionadosFP.getChildren().add(newTextField("Contacto"));
     }
 
     private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
@@ -194,6 +195,10 @@ public class AgregarContactoController implements Initializable {
 
     private List<String> getFechas() {
         return nodeListToStringList(fechasFP.getChildren());
+    }
+    
+    private List<String> getContactosRelacionados() {
+        return nodeListToStringList(contactosRelacionadosFP.getChildren());
     }
 
     private List<String> nodeListToStringList(List<Node> nodeList) {
