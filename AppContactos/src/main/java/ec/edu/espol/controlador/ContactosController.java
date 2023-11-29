@@ -7,6 +7,8 @@ package ec.edu.espol.controlador;
 import ec.edu.espol.appcontactos.App;
 import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
 import ec.edu.espol.modelo.Contacto;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -35,6 +38,8 @@ public class ContactosController implements Initializable {
     public static int numContactosAgg = 0;
 
     private int contactoMostrado = 0;
+    
+    private final String stockUrl = "\\src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";
 
     @FXML
     private ImageView agregar;
@@ -103,18 +108,35 @@ public class ContactosController implements Initializable {
                 telefonosLabel.setText(contactoActual.getNumerosTelefonicos().toString());
                 correosLabel.setText(contactoActual.getEmails().toString());
                 redesLabel.setText(contactoActual.getRedesSociales().toString());
-                fechasLabel.setText(contactoActual.getFechasDeInteres().toString());
+                fechasLabel.setText(contactoActual.getFechasDeInteres().toString());   
+                
+                try {
+                    String urlFoto;
+                    if (!contactoActual.getFotos().isEmpty()) {
+                        urlFoto = contactoActual.getFotos().get(0).getUrl();
+                    } else {
+                        urlFoto = stockUrl;
+                    }
+
+                    Image im = new Image(urlFoto, true); // true para cargar de manera asíncrona
+                    im.errorProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue) {
+                            // Manejar el error de carga de la imagen aquí
+                            System.out.println("Error al cargar la imagen: " + urlFoto);
+                        }
+                    });
+
+                    actualProfilePic = new ImageView(im);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Manejar otras excepciones aquí
+                }
             }
         }
     }
 
     @FXML
     private void contactoAnterior(MouseEvent event) {
-        /*
-        Este metodo actualmente lanzará excepciones de ArrayOutOfBoundsException
-        esta pensado para en cuando ya este implementada nuestra clase linkedlistcircular
-        funcione correctamnte y no lance ninguna excepcion.
-         */
         contactoMostrado = contactoMostrado - 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
@@ -122,11 +144,6 @@ public class ContactosController implements Initializable {
 
     @FXML
     private void contactoSiguiente(MouseEvent event) {
-        /*
-        Este metodo actualmente lanzará excepciones de ArrayOutOfBoundsException
-        esta pensado para en cuando ya este implementada nuestra clase linkedlistcircular
-        funcione correctamnte y no lance ninguna excepcion.
-         */
         contactoMostrado = contactoMostrado + 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
@@ -146,5 +163,24 @@ public class ContactosController implements Initializable {
                 App.setRoot("fotos");
             } catch (IOException ex) {}
         }
+    }
+    
+    public void setImagen(Contacto c) {
+        
+    }
+    
+    ImageView cargarImagen(String url) {
+        try {
+            FileInputStream in = new FileInputStream(url);
+            Image im = new Image(in);
+            ImageView iv = new ImageView();
+            iv.setImage(im);
+            iv.setFitHeight(75);
+            iv.setFitWidth(75);
+            return iv;
+        } catch (FileNotFoundException e) {
+            System.out.println("No archivo existe");
+        }
+        return null;
     }
 }
