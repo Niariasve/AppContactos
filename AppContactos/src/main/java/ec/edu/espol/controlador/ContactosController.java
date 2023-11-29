@@ -228,18 +228,16 @@ public class ContactosController implements Initializable {
         return null;
     }
 
-    public static void eliminar(int indice) {
+    public void eliminar(int indice) {
         if (indice >= 0 && indice < contactos.size()) {
-            contactos.remove(indice);
+            contactos.remove(contactoMostrado);
             numContactosAgg--;
         }
     }
 
     @FXML
     private void eliminarContacto(MouseEvent event) {
-        VBox contenedor = (VBox) event.getSource();
-        int indice = ((VBox) contenedor.getParent()).getChildren().indexOf(contenedor);
-
+       
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar contacto");
         alert.setHeaderText(null);
@@ -247,8 +245,8 @@ public class ContactosController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            eliminar(indice);
-            
+            eliminar(contactoMostrado);
+            actualizarPantalla(contactoMostrado);
         }
     }
 }
