@@ -9,17 +9,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="400.0">
+      <VBox prefHeight="600.0" prefWidth="445.0">
          <children>
-            <HBox fx:id="modoRevista" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: lightGray;">
+            <HBox fx:id="modoRevista" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="446.0" style="-fx-background-color: lightGray;">
                <children>
                   <Pane prefHeight="90.0" prefWidth="10.0" />
                   <ImageView fitHeight="121.0" fitWidth="47.0" onMouseClicked="#cambiarVistaContactos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imgs/modo%20catalogo.png" />
                      </image>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="67.0" onMouseClicked="#eliminarContacto" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/88666.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </ImageView>
                   <ImageView fitHeight="42.0" fitWidth="42.0" onMouseClicked="#entrarAgregar" pickOnBounds="true" preserveRatio="true">
                      <image>

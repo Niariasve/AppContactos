@@ -113,19 +113,6 @@ public class ContactosListaController implements Initializable {
         }
     }
 
-    @FXML
-    private void eliminarContacto(MouseEvent event) {
-        VBox contenedor = (VBox) event.getSource();
-        int indice = ((VBox) contenedor.getParent()).getChildren().indexOf(contenedor);
-
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Eliminar Contacto");
-        alerta.setHeaderText(null);
-        alerta.setContentText("¿Estas seguro que deseas eliminar este contacto?");
-        Optional<ButtonType> result = alerta.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            ContactosController.eliminarContacto(indice);
-        }
-    }
+    
 
 }

@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -77,6 +80,21 @@ public class EditarContactoController implements Initializable {
             
             
         }
+    }
+    
+    @FXML
+    private void eliminarContacto(MouseEvent event) {
+//        VBox contenedor = (VBox) event.getSource();
+//        int indice = ((VBox) contenedor.getParent()).getChildren().indexOf(contenedor);
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Eliminar Contacto");
+        alerta.setHeaderText(null);
+        alerta.setContentText("¿Estas seguro que deseas eliminar este contacto?");
+        Optional<ButtonType> result = alerta.showAndWait();
+//        if (result.isPresent() && result.get() == ButtonType.OK) {
+//            ContactosController.eliminarContacto(indice);
+//        }
     }
     
     
