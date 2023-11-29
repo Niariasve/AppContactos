@@ -137,17 +137,7 @@ public class AgregarContactoController implements Initializable {
                 guardado.mkdirs();
             }
             
-            File outputFile=new File(url+PhotoSelect.getName());
-            try{
-                Files.copy(PhotoSelect.toPath(),outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Copia de imagen guardada en: " + outputFile.getAbsolutePath());
-                System.out.println(PhotoSelect.getName());
-                Imagen = PhotoSelect.getName();
-
-
-            }catch(IOException e){
-                e.printStackTrace();
-            }
+            
             
             
         }
