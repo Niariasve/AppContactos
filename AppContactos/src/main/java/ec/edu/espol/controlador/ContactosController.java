@@ -209,9 +209,6 @@ public class ContactosController implements Initializable {
 //        }
 //    }
 
-    public void setImagen(Contacto c) {
-
-    }
 
     ImageView cargarImagen(String url) {
         try {
@@ -229,10 +226,13 @@ public class ContactosController implements Initializable {
     }
 
     public void eliminar(int indice) {
-        if (indice >= 0 && indice < contactos.size()) {
-            contactos.remove(indice);
-            numContactosAgg--;
+        Contacto c = contactos.get(indice);
+        try{
+            contactos.remove(c);
+        } catch (UnsupportedOperationException ex) {
+            System.out.println("aqui esta el error");
         }
+        numContactosAgg--;       
     }
 
     @FXML

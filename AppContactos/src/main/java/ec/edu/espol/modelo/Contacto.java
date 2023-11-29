@@ -119,10 +119,19 @@ public class Contacto implements Comparable{
         this.Fotos = Fotos;
     }
     
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
-        //TODO
-        throw new UnsupportedOperationException();
+        if (this == o) return true;
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        
+        Contacto other = (Contacto)o;
+        return this.nombre.equals(other.nombre) && this.apellido.equals(other.apellido);
     }
 
     @Override
@@ -134,4 +143,5 @@ public class Contacto implements Comparable{
         }
         return this.nombre.compareTo(other.nombre);
     }
+    
 }
