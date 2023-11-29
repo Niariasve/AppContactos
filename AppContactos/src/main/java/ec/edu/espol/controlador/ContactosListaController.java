@@ -140,6 +140,18 @@ public class ContactosListaController implements Initializable {
 
     @FXML
     private void filtrar(MouseEvent event) {
+        if (Busqueda.getText() != "") {
+            filtrarConTextBox();
+        } else {
+            
+        }
+    }
+
+    private boolean cumpleConFiltro(Contacto contacto, String filtro) {
+        return contacto.getNombre().toLowerCase().contains(filtro) || contacto.getApellido().toLowerCase().contains(filtro);
+    }
+
+    private void filtrarConTextBox() {
         String filtro = Busqueda.getText().toLowerCase(); // Obtener el texto del TextField y convertirlo a minúsculas
 
         if (filtro.isEmpty()) {
@@ -160,9 +172,4 @@ public class ContactosListaController implements Initializable {
             }
         }
     }
-
-    private boolean cumpleConFiltro(Contacto contacto, String filtro) {
-        return contacto.getNombre().toLowerCase().contains(filtro) || contacto.getApellido().toLowerCase().contains(filtro);
-    }
-
 }
