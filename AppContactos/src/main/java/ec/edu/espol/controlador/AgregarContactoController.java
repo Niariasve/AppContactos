@@ -170,6 +170,7 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
+        
     }
 
     private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
