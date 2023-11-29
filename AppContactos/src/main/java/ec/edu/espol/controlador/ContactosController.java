@@ -177,10 +177,10 @@ public class ContactosController implements Initializable {
             }
         }
     }
-    
+
     private boolean visible = false;
 
-  @FXML
+    @FXML
     private void clickTexto(MouseEvent event) {
         if (espacioRelacionados.isVisible()) {
             espacioRelacionados.setVisible(false);
@@ -206,6 +206,7 @@ public class ContactosController implements Initializable {
             espacioRelacionados.getChildren().add(vboxContacto);
         }
     }
+
     public void setImagen(Contacto c) {
 
     }
@@ -226,15 +227,18 @@ public class ContactosController implements Initializable {
     }
 
     public void eliminar(int indice) {
-        if (indice >= 0 && indice < contactos.size()) {
-            contactos.remove(indice);
-            numContactosAgg--;
+        Contacto c = contactos.get(indice);
+        try {
+            contactos.remove(c);
+        } catch (UnsupportedOperationException ex) {
+            System.out.println("aqui esta el error");
         }
+        numContactosAgg--;
     }
 
     @FXML
     private void eliminarContacto(MouseEvent event) {
-       
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar contacto");
         alert.setHeaderText(null);
