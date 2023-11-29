@@ -134,6 +134,7 @@ public class AgregarContactoController implements Initializable {
 
         if (PhotoSelect != null) {
             Image selected = new Image(PhotoSelect.toURI().toString());
+            System.out.println(PhotoSelect.toURI().toString());
             
             e.add(new Foto(PhotoSelect.toURI().toString()));
             

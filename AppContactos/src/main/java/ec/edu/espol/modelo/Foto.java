@@ -22,4 +22,9 @@ public class Foto {
     public void setUrl(String Url){
         this.Url=Url;
     }
+    
+    @Override
+    public String toString() {
+        return Url;
+    }
 }

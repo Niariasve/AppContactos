@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,8 +40,8 @@ public class ContactosController implements Initializable {
 
     private int contactoMostrado = 0;
     
-    private final String stockUrl = "\\src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";
-
+    private final String stockUrl = "src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";   
+    
     @FXML
     private ImageView agregar;
     @FXML
@@ -112,11 +113,12 @@ public class ContactosController implements Initializable {
                 
                 try {
                     String urlFoto;
-                    if (!contactoActual.getFotos().isEmpty()) {
-                        urlFoto = contactoActual.getFotos().get(0).getUrl();
+                    if (!contactoActual.getFotos().isEmpty()) {                       
+                        urlFoto = contactoActual.getFotos().get(0).getUrl();                       
                     } else {
-                        urlFoto = stockUrl;
+                        urlFoto = "file:src/main/resources/ec/edu/espol/imgs/istockphoto-1337144146-612x612.jpg";                    
                     }
+                    System.out.println(urlFoto);
 
                     Image im = new Image(urlFoto, true); // true para cargar de manera asíncrona
                     im.errorProperty().addListener((observable, oldValue, newValue) -> {
@@ -124,9 +126,10 @@ public class ContactosController implements Initializable {
                             // Manejar el error de carga de la imagen aquí
                             System.out.println("Error al cargar la imagen: " + urlFoto);
                         }
+                    });                    
+                    Platform.runLater(() -> {
+                        actualProfilePic.setImage(im);
                     });
-
-                    actualProfilePic = new ImageView(im);
                 } catch (Exception e) {
                     e.printStackTrace();
                     // Manejar otras excepciones aquí
@@ -158,7 +161,8 @@ public class ContactosController implements Initializable {
 
     @FXML
     private void CambiarVistaFotos(MouseEvent event) {
-        if (contactos.size() != 0) {
+        if (!contactos.isEmpty()) {
+            System.out.println(contactos.get(contactoMostrado).getFotos().size());
             try {
                 App.setRoot("fotos");
             } catch (IOException ex) {}
