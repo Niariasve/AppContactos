@@ -207,7 +207,7 @@ public class AgregarContactoController implements Initializable {
             if (opcion.equals("Empresa")) {
                 nombreTf.setVisible(false);
                 apellidoTf.setVisible(false);
-                apellidoTf.setVisible(true);
+                nombreTf.setText("");
                 apellidoTf.setText("");
                 empresaTf.setText("");
                 
