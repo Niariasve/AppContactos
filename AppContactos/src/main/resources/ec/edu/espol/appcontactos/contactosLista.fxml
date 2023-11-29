@@ -21,14 +21,6 @@
                         <Image url="@../imgs/modo%20catalogo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="55.0" fitWidth="67.0" onMouseClicked="#eliminarContacto" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../imgs/88666.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
                   <ImageView fitHeight="42.0" fitWidth="42.0" onMouseClicked="#entrarAgregar" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imgs/6324460.png" />
