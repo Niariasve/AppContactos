@@ -84,25 +84,7 @@ public class ContactosListaController implements Initializable {
         int num = contactos.size();
 
         for (int i = 0; i < num; i++) {
-            VBox contenedor = new VBox();
-            contenedor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"); // ESTILO DEL CONTENEDOR
-            contenedor.setPrefSize(395, 40); // TAMANO DEL CONTENEDOR 
-            contenedor.setAlignment(Pos.CENTER_LEFT); //ALINEACION IZQ CENTRO
-
-            String nombreCompleto;
-            if (contactos.get(i).getEmpresa() != null && !contactos.get(i).getEmpresa().isEmpty()) {
-                nombreCompleto = contactos.get(i).getEmpresa();
-
-            } else {
-                nombreCompleto = contactos.get(i).getNombre() + " " + contactos.get(i).getApellido();
-
-            }
-
-            Label textoContacto = new Label(nombreCompleto);
-            textoContacto.setFont(Font.font("Segoe UI", 14));  // FUENTE DE LETRA 
-            contenedor.getChildren().add(textoContacto);
-            medio.getChildren().add(contenedor);
-
+            crearContenedorDeContacto(contactos, i, medio);
         }
 
         listaFP.setContent(medio);
@@ -171,5 +153,30 @@ public class ContactosListaController implements Initializable {
                 System.out.println(contacto);
             }
         }
+    }
+    
+    private void filtrarSinTextBox() {
+        
+    }
+    
+    private void crearContenedorDeContacto(List<Contacto> contactos, int i, VBox medio) {
+            VBox contenedor = new VBox();
+            contenedor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"); // ESTILO DEL CONTENEDOR
+            contenedor.setPrefSize(395, 40); // TAMANO DEL CONTENEDOR 
+            contenedor.setAlignment(Pos.CENTER_LEFT); //ALINEACION IZQ CENTRO
+
+            String nombreCompleto;
+            if (contactos.get(i).getEmpresa() != null && !contactos.get(i).getEmpresa().isEmpty()) {
+                nombreCompleto = contactos.get(i).getEmpresa();
+
+            } else {
+                nombreCompleto = contactos.get(i).getNombre() + " " + contactos.get(i).getApellido();
+
+            }
+
+            Label textoContacto = new Label(nombreCompleto);
+            textoContacto.setFont(Font.font("Segoe UI", 14));  // FUENTE DE LETRA 
+            contenedor.getChildren().add(textoContacto);
+            medio.getChildren().add(contenedor);
     }
 }
