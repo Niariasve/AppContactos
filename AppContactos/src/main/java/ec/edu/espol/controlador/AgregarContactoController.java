@@ -75,14 +75,12 @@ public class AgregarContactoController implements Initializable {
     private TextField empresaTf;
     @FXML
     private TextField direccionTf;
-    
 
- 
-    
     private String Imagen;
-    
+
     LinkedListCircular<Foto> e;
     MyArrayList<Contacto> contactosRelacionados;
+    
 
     /**
      * Initializes the controller class.
@@ -140,16 +138,16 @@ public class AgregarContactoController implements Initializable {
         if (PhotoSelect != null) {
             Image selected = new Image(PhotoSelect.toURI().toString());
             System.out.println(PhotoSelect.toURI().toString());
-            
+
             e.add(new Foto(PhotoSelect.toURI().toString()));
-            
+
             profilePicture.setImage(selected);
             String url = "src/main/resources/ec/edu/espol/imgs/contactos/";
             File guardado = new File(url);
-            
-            if(!guardado.exists()){
+
+            if (!guardado.exists()) {
                 guardado.mkdirs();
-            }          
+            }
         }
     }
 
@@ -175,8 +173,16 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
-        contactosRelacionadosFP.getChildren().add(newTextField("Contacto"));
+        LinkedListCircular<Contacto> lista= ContactosController.contactos;
+        if (lista.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("No hay contactos disponibles.");
+            alert.show();
+        } else {
+            contactosRelacionadosFP.getChildren().add(newTextField("Contacto"));
+        }
     }
+    
 
     private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
         if (nombre.equals("") && apellido.equals("") && empresa.equals("")) {
@@ -199,7 +205,7 @@ public class AgregarContactoController implements Initializable {
     private List<String> getFechas() {
         return nodeListToStringList(fechasFP.getChildren());
     }
-    
+
     private List<String> getContactosRelacionados() {
         return nodeListToStringList(contactosRelacionadosFP.getChildren());
     }
@@ -235,13 +241,13 @@ public class AgregarContactoController implements Initializable {
 
         return tf;
     }
-    
+
     private static MyArrayList<Contacto> filterContactos(List<String> contactos) {
         MyArrayList<Contacto> results = new MyArrayList<>();
         List<Contacto> c = ContactosController.contactos;
-                     
+
         for (String s : contactos) {
-            for (Contacto cont : c) {               
+            for (Contacto cont : c) {
                 if ((cont.getNombre() + " " + cont.getApellido()).contains(s) && !results.contains(cont)) {
                     results.add(cont);
                 }
