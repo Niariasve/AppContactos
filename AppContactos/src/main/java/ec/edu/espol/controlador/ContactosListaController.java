@@ -14,11 +14,14 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -36,7 +39,7 @@ import javafx.scene.text.Font;
  * @author User
  */
 public class ContactosListaController implements Initializable {
-    
+
     private static MyArrayList<Contacto> contactos = new MyArrayList<>();
 
     @FXML
@@ -50,16 +53,16 @@ public class ContactosListaController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {      
+    public void initialize(URL url, ResourceBundle rb) {
 
         LinkedListCircular<Contacto> c = ContactosController.contactos;
-        if (c.size() != contactos.size()) {                              
+        if (c.size() != contactos.size()) {
             for (int i = contactos.size(); i < ContactosController.numContactosAgg; i++) {
                 contactos.add(c.get(i));
             }
             contactos.sort((Contacto c1, Contacto c2) -> c1.compareTo(c2));
         }
-        
+
         numContactosReg.setText(String.valueOf(contactos.size()));
 
         VBox medio = new VBox();
@@ -85,9 +88,7 @@ public class ContactosListaController implements Initializable {
             textoContacto.setFont(Font.font("Segoe UI", 14));  // FUENTE DE LETRA 
             contenedor.getChildren().add(textoContacto);
             medio.getChildren().add(contenedor);
-            
 
-            
         }
 
         listaFP.setContent(medio);
@@ -111,10 +112,20 @@ public class ContactosListaController implements Initializable {
         } catch (IOException ex) {
         }
     }
-    
-    
 
-    
-    
+    @FXML
+    private void eliminarContacto(MouseEvent event) {
+        VBox contenedor = (VBox) event.getSource();
+        int indice = ((VBox) contenedor.getParent()).getChildren().indexOf(contenedor);
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Eliminar Contacto");
+        alerta.setHeaderText(null);
+        alerta.setContentText("¿Estas seguro que deseas eliminar este contacto?");
+        Optional<ButtonType> result = alerta.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            ContactosController.eliminarContacto(indice);
+        }
+    }
 
 }

@@ -39,9 +39,9 @@ public class ContactosController implements Initializable {
     public static int numContactosAgg = 0;
 
     private int contactoMostrado = 0;
-    
-    private final String stockUrl = "src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";   
-    
+
+    private final String stockUrl = "src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";
+
     @FXML
     private ImageView agregar;
     @FXML
@@ -84,7 +84,7 @@ public class ContactosController implements Initializable {
             }
         }
         System.out.println(contactoMostrado);
-        System.out.println(numContactosAgg);       
+        System.out.println(numContactosAgg);
     }
 
     @FXML
@@ -99,7 +99,7 @@ public class ContactosController implements Initializable {
         ContactosController.contactos.add(contacto);
     }
 
-    public void actualizarPantalla(int mostrar) {       
+    public void actualizarPantalla(int mostrar) {
         if (!contactos.isEmpty()) {
             Contacto contactoActual = contactos.get(mostrar);
             if (contactoActual != null) {
@@ -111,14 +111,14 @@ public class ContactosController implements Initializable {
                 telefonosLabel.setText(contactoActual.getNumerosTelefonicos().toString());
                 correosLabel.setText(contactoActual.getEmails().toString());
                 redesLabel.setText(contactoActual.getRedesSociales().toString());
-                fechasLabel.setText(contactoActual.getFechasDeInteres().toString());   
-                
+                fechasLabel.setText(contactoActual.getFechasDeInteres().toString());
+
                 try {
                     String urlFoto;
-                    if (!contactoActual.getFotos().isEmpty()) {                       
-                        urlFoto = contactoActual.getFotos().get(0).getUrl();                       
+                    if (!contactoActual.getFotos().isEmpty()) {
+                        urlFoto = contactoActual.getFotos().get(0).getUrl();
                     } else {
-                        urlFoto = "file:src/main/resources/ec/edu/espol/imgs/istockphoto-1337144146-612x612.jpg";                    
+                        urlFoto = "file:src/main/resources/ec/edu/espol/imgs/istockphoto-1337144146-612x612.jpg";
                     }
                     System.out.println(urlFoto);
 
@@ -128,7 +128,7 @@ public class ContactosController implements Initializable {
                             // Manejar el error de carga de la imagen aquí
                             System.out.println("Error al cargar la imagen: " + urlFoto);
                         }
-                    });                    
+                    });
                     Platform.runLater(() -> {
                         actualProfilePic.setImage(im);
                     });
@@ -158,7 +158,8 @@ public class ContactosController implements Initializable {
     private void cambiarVistaLista(MouseEvent event) {
         try {
             App.setRoot("contactosLista");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
 
     @FXML
@@ -167,14 +168,15 @@ public class ContactosController implements Initializable {
             System.out.println(contactos.get(contactoMostrado).getFotos().size());
             try {
                 App.setRoot("fotos");
-            } catch (IOException ex) {}
+            } catch (IOException ex) {
+            }
         }
     }
-    
+
     public void setImagen(Contacto c) {
-        
+
     }
-    
+
     ImageView cargarImagen(String url) {
         try {
             FileInputStream in = new FileInputStream(url);
@@ -188,5 +190,12 @@ public class ContactosController implements Initializable {
             System.out.println("No archivo existe");
         }
         return null;
+    }
+
+    public static void eliminarContacto(int indice) {
+        if (indice >= 0 && indice < contactos.size()) {
+            contactos.remove(indice);
+            numContactosAgg--;
+        }
     }
 }

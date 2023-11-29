@@ -7,7 +7,6 @@ package ec.edu.espol.controlador;
 import Exceptiones.CampoVacioException;
 import ec.edu.espol.appcontactos.App;
 import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
-import ec.edu.espol.appcontactos.Tda.MyArrayList;
 import ec.edu.espol.modelo.Contacto;
 import ec.edu.espol.modelo.Foto;
 import java.io.File;
@@ -82,7 +81,6 @@ public class AgregarContactoController implements Initializable {
     private String Imagen;
     
     LinkedListCircular<Foto> e;
-    MyArrayList<Contacto> contactosRelacionados;
 
     /**
      * Initializes the controller class.
@@ -173,7 +171,7 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
-        contactosRelacionadosFP.getChildren().add(newTextField("Contacto"));
+        
     }
 
     private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
@@ -196,10 +194,6 @@ public class AgregarContactoController implements Initializable {
 
     private List<String> getFechas() {
         return nodeListToStringList(fechasFP.getChildren());
-    }
-    
-    private List<String> getContactosRelacionados() {
-        return nodeListToStringList(contactosRelacionadosFP.getChildren());
     }
 
     private List<String> nodeListToStringList(List<Node> nodeList) {
