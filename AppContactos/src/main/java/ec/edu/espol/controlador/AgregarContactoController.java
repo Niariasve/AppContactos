@@ -6,7 +6,9 @@ package ec.edu.espol.controlador;
 
 import Exceptiones.CampoVacioException;
 import ec.edu.espol.appcontactos.App;
+import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
 import ec.edu.espol.modelo.Contacto;
+import ec.edu.espol.modelo.Foto;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -76,6 +78,8 @@ public class AgregarContactoController implements Initializable {
  
     
     private String Imagen;
+    
+    LinkedListCircular<Foto> e;
 
     /**
      * Initializes the controller class.
@@ -129,6 +133,9 @@ public class AgregarContactoController implements Initializable {
 
         if (PhotoSelect != null) {
             Image selected = new Image(PhotoSelect.toURI().toString());
+            
+            e.add(new Foto(PhotoSelect.toURI().toString()));
+            
             profilePicture.setImage(selected);
             String url = "src/main/resources/ec/edu/espol/imgs/contactos/";
             File guardado = new File(url);
@@ -137,17 +144,7 @@ public class AgregarContactoController implements Initializable {
                 guardado.mkdirs();
             }
             
-            File outputFile=new File(url+PhotoSelect.getName());
-            try{
-                Files.copy(PhotoSelect.toPath(),outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Copia de imagen guardada en: " + outputFile.getAbsolutePath());
-                System.out.println(PhotoSelect.getName());
-                Imagen = PhotoSelect.getName();
-
-
-            }catch(IOException e){
-                e.printStackTrace();
-            }
+            
             
             
         }
