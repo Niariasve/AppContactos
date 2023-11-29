@@ -150,6 +150,7 @@ public class ContactosController implements Initializable {
         contactoMostrado = contactoMostrado - 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
+        mostrarContactosRelacionados();
     }
 
     @FXML
@@ -157,6 +158,8 @@ public class ContactosController implements Initializable {
         contactoMostrado = contactoMostrado + 1;
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
+        mostrarContactosRelacionados();
+
     }
 
     @FXML
@@ -197,20 +200,28 @@ public class ContactosController implements Initializable {
         Contacto contactoActual = contactos.get(contactoMostrado);
         List<Contacto> contactosRelacionados = contactoActual.getContactosRelacionados();
         espacioRelacionados.getChildren().clear();
-        for (Contacto c : contactosRelacionados) {
-            Label nombreLabel = new Label("Nombre: " + c.getNombre());
-            Label telefonoLabel = new Label("Teléfono: " + c.getNumerosTelefonicos().toString());
+        if (contactosRelacionados.isEmpty()) {
+            Label nombreLabel = new Label("No Hay Contactos Disponibles");
             VBox vboxContacto = new VBox();
-            vboxContacto.getChildren().addAll(nombreLabel, telefonoLabel);
+            vboxContacto.getChildren().addAll(nombreLabel);
             vboxContacto.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 5px");
-            vboxContacto.setOnMouseClicked(event -> {
-                int indice = contactos.indexOf(c);
-                if (indice != -1) {
-                    contactoMostrado = indice;
-                    actualizarPantalla(contactoMostrado);
-                }
-            });
             espacioRelacionados.getChildren().add(vboxContacto);
+        } else {
+            for (Contacto c : contactosRelacionados) {
+                Label nombreLabel = new Label("Nombre: " + c.getNombre());
+                Label telefonoLabel = new Label("Teléfono: " + c.getNumerosTelefonicos().toString());
+                VBox vboxContacto = new VBox();
+                vboxContacto.getChildren().addAll(nombreLabel, telefonoLabel);
+                vboxContacto.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 5px");
+                vboxContacto.setOnMouseClicked(event -> {
+                    int indice = contactos.indexOf(c);
+                    if (indice != -1) {
+                        contactoMostrado = indice;
+                        actualizarPantalla(contactoMostrado);
+                    }
+                });
+                espacioRelacionados.getChildren().add(vboxContacto);
+            }
         }
     }
 
