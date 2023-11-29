@@ -18,11 +18,13 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -75,12 +77,13 @@ public class AgregarContactoController implements Initializable {
     private TextField empresaTf;
     @FXML
     private TextField direccionTf;
+    @FXML
+    private ComboBox cbxcontacto;
 
     private String Imagen;
 
     LinkedListCircular<Foto> e;
     MyArrayList<Contacto> contactosRelacionados;
-    
 
     /**
      * Initializes the controller class.
@@ -89,6 +92,12 @@ public class AgregarContactoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         e = new LinkedListCircular<>();
         contactosRelacionados = new MyArrayList<>();
+        try {
+            cargarCombo();
+            cbxcontacto.setValue("Persona");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
@@ -173,7 +182,7 @@ public class AgregarContactoController implements Initializable {
 
     @FXML
     private void agregarContactoRelacionado(MouseEvent event) {
-        LinkedListCircular<Contacto> lista= ContactosController.contactos;
+        LinkedListCircular<Contacto> lista = ContactosController.contactos;
         if (lista.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("No hay contactos disponibles.");
@@ -182,6 +191,38 @@ public class AgregarContactoController implements Initializable {
             contactosRelacionadosFP.getChildren().add(newTextField("Contacto"));
         }
     }
+
+    void cargarCombo() throws IOException {
+        ArrayList<String> ordenar = new ArrayList<>();
+        ordenar.add("Persona");
+        ordenar.add("Empresa");
+        cbxcontacto.getItems().setAll(ordenar);
+
+    }
+
+    @FXML
+    void comboEvents(ActionEvent e) {
+        String opcion = (String) cbxcontacto.getValue();
+        if (opcion != null) {
+            if (opcion.equals("Empresa")) {
+                nombreTf.setVisible(false);
+                apellidoTf.setVisible(false);
+                apellidoTf.setVisible(true);
+                apellidoTf.setText("");
+                empresaTf.setText("");
+                
+            } else {
+                nombreTf.setVisible(true);
+                nombreTf.setText("");
+                apellidoTf.setVisible(true);
+                apellidoTf.setText("");
+                empresaTf.setText("");
+                
+               
+            }
+        }
+    }
+
     
 
     private void camposLLenadosCorrectamente(String nombre, String apellido, String empresa, List<String> telefonos) throws CampoVacioException {
