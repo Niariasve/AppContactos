@@ -62,6 +62,8 @@ public class ContactosController implements Initializable {
     private Label fechasLabel;
     @FXML
     private Label empresaLabel;
+    @FXML
+    private Label contactosRelacionadosLabel;
 
     /**
      * Initializes the controller class.
