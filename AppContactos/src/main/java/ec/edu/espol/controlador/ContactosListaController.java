@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -52,13 +53,15 @@ public class ContactosListaController implements Initializable {
     private Label numContactosReg;
     @FXML
     private HBox modoRevista;
-    
+
     @FXML
     private ComboBox<String> Opciones;
-    
+
     @FXML
     private TextField Busqueda;
-    
+
+    @FXML
+    private Button filtrarA;
 
     /**
      * Initializes the controller class.
@@ -103,7 +106,7 @@ public class ContactosListaController implements Initializable {
         }
 
         listaFP.setContent(medio);
-        
+
         ObservableList<String> opcionesLista = FXCollections.observableArrayList(
                 "Apellido y Primer Nombre",
                 "Cantidad de Atributos",
@@ -112,9 +115,8 @@ public class ContactosListaController implements Initializable {
                 "País de residencia",
                 "TipoContacto"
         );
-        
+
         Opciones.setItems(opcionesLista);
-        
 
     }
 
@@ -136,6 +138,31 @@ public class ContactosListaController implements Initializable {
         }
     }
 
-    
+    @FXML
+    private void filtrar(MouseEvent event) {
+        String filtro = Busqueda.getText().toLowerCase(); // Obtener el texto del TextField y convertirlo a minúsculas
+
+        if (filtro.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Error, no ha ingresado ningún valor a filtrar");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else {
+            LinkedListCircular<Contacto> listaFiltrada = new LinkedListCircular<>();
+            for (Contacto contacto : contactos) {
+                if (cumpleConFiltro(contacto, filtro)) {
+                    listaFiltrada.add(contacto);
+                }
+            }
+            for (Contacto contacto : listaFiltrada) {
+                System.out.println(contacto);
+            }
+        }
+    }
+
+    private boolean cumpleConFiltro(Contacto contacto, String filtro) {
+        return contacto.getNombre().toLowerCase().contains(filtro) || contacto.getApellido().toLowerCase().contains(filtro);
+    }
 
 }
