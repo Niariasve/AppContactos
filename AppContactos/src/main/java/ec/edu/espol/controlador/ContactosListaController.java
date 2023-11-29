@@ -50,12 +50,10 @@ public class ContactosListaController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Hello?");
+    public void initialize(URL url, ResourceBundle rb) {      
 
         LinkedListCircular<Contacto> c = ContactosController.contactos;
-        if (c.size() != contactos.size()) {
-            System.out.println("???");                    
+        if (c.size() != contactos.size()) {                              
             for (int i = contactos.size(); i < ContactosController.numContactosAgg; i++) {
                 contactos.add(c.get(i));
             }
