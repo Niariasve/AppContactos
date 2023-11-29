@@ -64,6 +64,8 @@ public class ContactosController implements Initializable {
     private Label empresaLabel;
     @FXML
     private Label contactosRelacionadosLabel;
+    @FXML
+    private VBox espacioRelacionados;
 
     /**
      * Initializes the controller class.
@@ -172,6 +174,37 @@ public class ContactosController implements Initializable {
             }
         }
     }
+    
+    private boolean visible = false;
+
+//    @FXML
+//    private void toggleContactosRelacionados(MouseEvent event) {
+//        if (visible) {
+//            espacioRelacionados.getChildren().clear(); 
+//            visible = false;
+//        } else {
+//            mostrarContactosRelacionados(); 
+//            visible = true;
+//        }
+//    }
+
+//    private void mostrarContactosRelacionados() {
+//        
+//        Contacto contactoActual = contactos.get(contactoMostrado);
+//        List<Contacto> contactosRelacionados = contactoActual.getContactosRelacionados();
+//
+//        for (Contacto contactoRelacionado : contactosRelacionados) {
+//            
+//            Label labelContactoRelacionado = new Label(contactoRelacionado.getNombre());
+//            
+//            espacioRelacionados.getChildren().add(labelContactoRelacionado);
+//
+//            
+//            labelContactoRelacionado.setOnMouseClicked(e -> {
+//                
+//            });
+//        }
+//    }
 
     public void setImagen(Contacto c) {
 

@@ -99,6 +99,8 @@
                                     <Font name="Eras Demi ITC" size="12.0" />
                                   </font></Label>
                               <Label fx:id="contactosRelacionadosLabel" />
+                              <VBox fx:id="espacioRelacionados" alignment="TOP_LEFT" spacing="5">
+                              </VBox>
                               <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
                            </children>
                         </VBox>
