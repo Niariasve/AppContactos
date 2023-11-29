@@ -13,12 +13,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -225,10 +228,27 @@ public class ContactosController implements Initializable {
         return null;
     }
 
-    public static void eliminarContacto(int indice) {
+    public static void eliminar(int indice) {
         if (indice >= 0 && indice < contactos.size()) {
             contactos.remove(indice);
             numContactosAgg--;
+        }
+    }
+
+    @FXML
+    private void eliminarContacto(MouseEvent event) {
+        VBox contenedor = (VBox) event.getSource();
+        int indice = ((VBox) contenedor.getParent()).getChildren().indexOf(contenedor);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar contacto");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que deseas eliminar este contacto?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            eliminar(indice);
+            
         }
     }
 }
