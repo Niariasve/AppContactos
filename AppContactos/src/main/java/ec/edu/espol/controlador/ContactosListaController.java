@@ -16,14 +16,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -48,6 +52,13 @@ public class ContactosListaController implements Initializable {
     private Label numContactosReg;
     @FXML
     private HBox modoRevista;
+    
+    @FXML
+    private ComboBox<String> Opciones;
+    
+    @FXML
+    private TextField Busqueda;
+    
 
     /**
      * Initializes the controller class.
@@ -92,6 +103,18 @@ public class ContactosListaController implements Initializable {
         }
 
         listaFP.setContent(medio);
+        
+        ObservableList<String> opcionesLista = FXCollections.observableArrayList(
+                "Apellido y Primer Nombre",
+                "Cantidad de Atributos",
+                "Fecha de Cumpleaños",
+                "Empresa",
+                "País de residencia",
+                "TipoContacto"
+        );
+        
+        Opciones.setItems(opcionesLista);
+        
 
     }
 

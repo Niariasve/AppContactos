@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
    <children>
       <VBox prefHeight="600.0" prefWidth="445.0">
          <children>
-            <HBox fx:id="modoRevista" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="446.0" style="-fx-background-color: lightGray;">
+            <HBox fx:id="modoRevista" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="446.0" style="-fx-background-color: lightGray;" VBox.vgrow="ALWAYS">
                <children>
                   <Pane prefHeight="90.0" prefWidth="10.0" />
                   <ImageView fitHeight="121.0" fitWidth="47.0" onMouseClicked="#cambiarVistaContactos" pickOnBounds="true" preserveRatio="true">
@@ -21,6 +23,19 @@
                         <Image url="@../imgs/modo%20catalogo.png" />
                      </image>
                   </ImageView>
+                  <TextField fx:id="Busqueda" prefHeight="25.0" prefWidth="38.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </TextField>
+                  <ComboBox fx:id="Opciones" maxWidth="-Infinity" prefHeight="25.0" prefWidth="78.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
                   <ImageView fitHeight="42.0" fitWidth="42.0" onMouseClicked="#entrarAgregar" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imgs/6324460.png" />
@@ -30,6 +45,9 @@
                      </HBox.margin>
                   </ImageView>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <VBox prefHeight="400.0" prefWidth="100.0">
                <children>
