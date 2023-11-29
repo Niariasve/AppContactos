@@ -25,6 +25,11 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
+                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="71.0" text="Eliminar">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
 
                         <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Editar" textOverrun="CLIP">
                            <HBox.margin>
@@ -99,6 +104,8 @@
                                     <Font name="Eras Demi ITC" size="12.0" />
                                   </font></Label>
                               <Label fx:id="contactosRelacionadosLabel" />
+                              <VBox fx:id="espacioRelacionados" alignment="TOP_LEFT" spacing="5">
+                              </VBox>
                               <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
                            </children>
                         </VBox>

@@ -113,11 +113,6 @@ public class ContactosListaController implements Initializable {
         }
     }
 
-    public static void eliminarContacto(int indice) {
-        if (indice >= 0 && indice < contactos.size()) {
-            contactos.remove(indice);
-            ContactosController.numContactosAgg--;
-        }
-    }
+    
 
 }
