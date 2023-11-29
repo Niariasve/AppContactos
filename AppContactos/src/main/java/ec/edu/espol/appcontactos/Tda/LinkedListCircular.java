@@ -36,14 +36,15 @@ public class LinkedListCircular<E> implements List<E> {
             this.sig = sig;
             this.ant = ant;
         }
-        
+
         @Override
         public String toString() {
             return "[Anterior: " + this.ant.contenido + ", Elemento: " + this.contenido + ", Siguiente: " + this.sig.contenido + "]";
         }
     }
-    
+
     private class Iterador implements Iterator {
+
         private int itr = 0;
 
         @Override
@@ -53,8 +54,9 @@ public class LinkedListCircular<E> implements List<E> {
 
         @Override
         public Object next() {
-            if(!hasNext())
+            if (!hasNext()) {
                 throw new NoSuchElementException();
+            }
             Nodo<E> f = first;
             for (int i = 0; i < itr; i++) {
                 f = f.sig;
@@ -62,7 +64,7 @@ public class LinkedListCircular<E> implements List<E> {
             itr++;
             return f.contenido;
         }
-        
+
     }
 
     @Override
@@ -117,10 +119,10 @@ public class LinkedListCircular<E> implements List<E> {
             size++;
             return true;
         }
-        Nodo<E> nodo = last;       
+        Nodo<E> nodo = last;
         last = tmp;
         tmp.sig = first;
-        nodo.sig = tmp;       
+        nodo.sig = tmp;
         size++;
         return true;
     }
@@ -181,8 +183,8 @@ public class LinkedListCircular<E> implements List<E> {
                 tmp = tmp.sig;
             }
             return tmp.contenido;
-        } else if (index < 0){
-            return this.get(size - index);           
+        } else if (index < 0) {
+            return this.get(size - index);
         }
         return tmp.contenido;
     }
@@ -218,8 +220,9 @@ public class LinkedListCircular<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        if (index < 0 || index > size - 1)
+        if (index < 0 || index > size - 1) {
             throw new IndexOutOfBoundsException();
+        }
         if (index != 0 && index != size - 1) {
             Nodo<E> nodo = first;
             for (int i = 0; i < index; i++) {
@@ -231,12 +234,13 @@ public class LinkedListCircular<E> implements List<E> {
             tmpAnt.sig = tmpSig;
             size--;
             return nodo.contenido;
-        } else if (index == 0)
+        } else if (index == 0) {
             return removeFirst();
-        else
+        } else {
             return removeLast();
+        }
     }
-    
+
     public E removeLast() {
         E elem = first.contenido;
         first.ant = last.ant;
@@ -245,7 +249,7 @@ public class LinkedListCircular<E> implements List<E> {
         size--;
         return elem;
     }
-    
+
     public E removeFirst() {
         E elem = last.contenido;
         last.sig = first.sig;
@@ -257,7 +261,23 @@ public class LinkedListCircular<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int index = 0;
+        if (o == null) {
+            for (Nodo<E> x = first; x != null; x = x.sig) {
+                if (x.contenido == null) {
+                    return index;
+                }
+                index++;
+            }
+        } else {
+            for (Nodo<E> x = first; x != null; x = x.sig) {
+                if (o.equals(x.contenido)) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return -1; 
     }
 
     @Override
@@ -279,5 +299,5 @@ public class LinkedListCircular<E> implements List<E> {
     public List<E> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

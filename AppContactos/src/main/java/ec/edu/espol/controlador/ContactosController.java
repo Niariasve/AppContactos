@@ -203,6 +203,13 @@ public class ContactosController implements Initializable {
             VBox vboxContacto = new VBox();
             vboxContacto.getChildren().addAll(nombreLabel, telefonoLabel);
             vboxContacto.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 5px");
+            vboxContacto.setOnMouseClicked(event -> {
+                int indice = contactos.indexOf(c);
+                if (indice != -1) {
+                    contactoMostrado = indice;
+                    actualizarPantalla(contactoMostrado);
+                }
+            });
             espacioRelacionados.getChildren().add(vboxContacto);
         }
     }
