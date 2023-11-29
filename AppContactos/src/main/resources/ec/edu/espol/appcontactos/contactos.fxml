@@ -12,114 +12,127 @@
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
-   <children>
-      <VBox prefHeight="600.0" prefWidth="400.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
+    <children>
+        <VBox prefHeight="600.0" prefWidth="400.0">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <HBox prefHeight="90.0" prefWidth="10.0" />
+                                <Button mnemonicParsing="false" onMouseClicked="#cambiarVistaLista" prefHeight="37.0" prefWidth="69.0" text="Lista" textOverrun="CLIP" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Button mnemonicParsing="false" onMouseClicked="#eliminarContacto" prefHeight="32.0" prefWidth="71.0" text="Eliminar">
+                                    <HBox.margin>
+                                        <Insets right="10.0" />
+                                    </HBox.margin>
+                                </Button>
+
+                                <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Editar" textOverrun="CLIP">
+                                    <HBox.margin>
+                                        <Insets right="10.0" />
+                                    </HBox.margin>
+                                </Button>
+
+                                <ImageView fx:id="agregar" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#entrarAgregarContacto" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../imgs/6324460.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </HBox>
                         <HBox prefHeight="90.0" prefWidth="10.0" />
-                        <Button mnemonicParsing="false" onMouseClicked="#cambiarVistaLista" prefHeight="37.0" prefWidth="69.0" text="Lista" textOverrun="CLIP" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#eliminarContacto" prefHeight="32.0" prefWidth="71.0" text="Eliminar">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
-
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Editar" textOverrun="CLIP">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></Button>
-
-                        <ImageView fx:id="agregar" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#entrarAgregarContacto" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imgs/6324460.png" />
-                           </image>
+                    </children>
+                </HBox>
+                <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
+                    <children>
+                        <Pane prefHeight="25.0" prefWidth="400.0" />
+                        <ImageView fx:id="actualProfilePic" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../imgs/istockphoto-1337144146-612x612.jpg" />
+                            </image>
                         </ImageView>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="90.0" prefWidth="10.0" />
-               </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
-               <children>
-                  <Pane prefHeight="25.0" prefWidth="400.0" />
-                  <ImageView fx:id="actualProfilePic" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../imgs/istockphoto-1337144146-612x612.jpg" />
-                     </image>
-                  </ImageView>
-                  <Pane prefHeight="25.0" prefWidth="400.0" />
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="220.0" prefWidth="200.0">
-                     <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="400.0">
-                           <children>
-                              <Label text="Nombres:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="nombresLabel" />
-                              <Label text="Apellidos:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="apellidosLabel" />
-                              <Label text="Empresa:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="empresaLabel" />
-                              <Label text="Números Telefónico:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="telefonosLabel" />
-                              <Label text="Correos Electrónicos:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="correosLabel" />
-                              <Label text="Dirección:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="direccionLabel" />
-                              <Label text="Redes Sociales:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="redesLabel" />
-                              <Label text="Fechas Importantes:">
-                                 <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                 </font></Label>
-                              <Label fx:id="fechasLabel" />
-                              <Label text="Contactos Relacionados:">
-                                  <font>
-                                    <Font name="Eras Demi ITC" size="12.0" />
-                                  </font></Label>
-                              <Label fx:id="contactosRelacionadosLabel" />
-                              <VBox fx:id="espacioRelacionados" alignment="TOP_LEFT" spacing="5">
-                              </VBox>
-                              <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
-                           </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
-               <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#contactoAnterior" text="Atras" />
-                  <Pane prefHeight="98.0" prefWidth="221.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#contactoSiguiente" text="Seguir" />
-               </children></HBox>
-         </children>
-      </VBox>
-   </children>
+                        <Pane prefHeight="25.0" prefWidth="400.0" />
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="220.0" prefWidth="200.0">
+                            <content>
+                                <VBox alignment="TOP_CENTER" prefHeight="220.0" prefWidth="400.0">
+                                    <children>
+                                        <Label text="Nombres:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="nombresLabel" />
+                                        <Label text="Apellidos:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="apellidosLabel" />
+                                        <Label text="Empresa:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="empresaLabel" />
+                                        <Label text="Números Telefónico:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="telefonosLabel" />
+                                        <Label text="Correos Electrónicos:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="correosLabel" />
+                                        <Label text="Dirección:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="direccionLabel" />
+                                        <Label text="Redes Sociales:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="redesLabel" />
+                                        <Label text="Fechas Importantes:">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="fechasLabel" />
+                                        <Label text="Contactos Relacionados " onMouseClicked="#clickTexto" style="-fx-text-fill: blue; -fx-underline: true;">
+                                            <font>
+                                                <Font name="Eras Demi ITC" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="contactosRelacionadosLabel" />
+                                        <VBox fx:id="espacioRelacionados" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0">
+  
+                                        </VBox>
+                          
+                                        <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: white;">
+                    <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#contactoAnterior" text="Atras" />
+                        <Pane prefHeight="98.0" prefWidth="221.0" />
+                        <Button mnemonicParsing="false" onMouseClicked="#contactoSiguiente" text="Seguir" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </Pane>

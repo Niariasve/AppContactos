@@ -180,35 +180,32 @@ public class ContactosController implements Initializable {
     
     private boolean visible = false;
 
-//    @FXML
-//    private void toggleContactosRelacionados(MouseEvent event) {
-//        if (visible) {
-//            espacioRelacionados.getChildren().clear(); 
-//            visible = false;
-//        } else {
-//            mostrarContactosRelacionados(); 
-//            visible = true;
-//        }
-//    }
+  @FXML
+    private void clickTexto(MouseEvent event) {
+        if (espacioRelacionados.isVisible()) {
+            espacioRelacionados.setVisible(false);
+            espacioRelacionados.setManaged(false);
+        } else {
+            espacioRelacionados.setVisible(true);
+            espacioRelacionados.setManaged(true);
+            mostrarContactosRelacionados();
+        }
 
-//    private void mostrarContactosRelacionados() {
-//        
-//        Contacto contactoActual = contactos.get(contactoMostrado);
-//        List<Contacto> contactosRelacionados = contactoActual.getContactosRelacionados();
-//
-//        for (Contacto contactoRelacionado : contactosRelacionados) {
-//            
-//            Label labelContactoRelacionado = new Label(contactoRelacionado.getNombre());
-//            
-//            espacioRelacionados.getChildren().add(labelContactoRelacionado);
-//
-//            
-//            labelContactoRelacionado.setOnMouseClicked(e -> {
-//                
-//            });
-//        }
-//    }
+    }
 
+    private void mostrarContactosRelacionados() {
+        Contacto contactoActual = contactos.get(contactoMostrado);
+        List<Contacto> contactosRelacionados = contactoActual.getContactosRelacionados();
+        espacioRelacionados.getChildren().clear();
+        for (Contacto c : contactosRelacionados) {
+            Label nombreLabel = new Label("Nombre: " + c.getNombre());
+            Label telefonoLabel = new Label("Teléfono: " + c.getNumerosTelefonicos().toString());
+            VBox vboxContacto = new VBox();
+            vboxContacto.getChildren().addAll(nombreLabel, telefonoLabel);
+            vboxContacto.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 5px");
+            espacioRelacionados.getChildren().add(vboxContacto);
+        }
+    }
     public void setImagen(Contacto c) {
 
     }
