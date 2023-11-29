@@ -94,6 +94,11 @@
                                     <Font name="Eras Demi ITC" size="12.0" />
                                  </font></Label>
                               <Label fx:id="fechasLabel" />
+                              <Label text="Contactos Relacionados:">
+                                  <font>
+                                    <Font name="Eras Demi ITC" size="12.0" />
+                                  </font></Label>
+                              <Label fx:id="contactosRelacionadosLabel" />
                               <Button mnemonicParsing="false" onMouseClicked="#CambiarVistaFotos" text="Agregar Fotos" />
                            </children>
                         </VBox>
