@@ -131,7 +131,7 @@ public class LinkedListCircular<E> implements List<E> {
         Nodo<E> nodo = first;
         for (E e : this) {
             if (e.equals(o)) {
-                remove(0);
+                remove(index);
                 return true;
             }
             index++;

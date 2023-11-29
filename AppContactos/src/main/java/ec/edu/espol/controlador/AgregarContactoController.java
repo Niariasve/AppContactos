@@ -88,7 +88,8 @@ public class AgregarContactoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        e = new LinkedListCircular();
+        e = new LinkedListCircular<>();
+        contactosRelacionados = new MyArrayList<>();
     }
 
     @FXML
@@ -110,6 +111,7 @@ public class AgregarContactoController implements Initializable {
         List<String> redesSociales = getRedesSociales();
         List<String> fechas = getFechas();
         List<Foto> f = e;
+        contactosRelacionados = filterContactos(getContactosRelacionados());
 
         boolean agg = true;
 
@@ -121,7 +123,7 @@ public class AgregarContactoController implements Initializable {
             alert.show();
             agg = false;
         }
-        Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, f);
+        Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, contactosRelacionados, f);
         if (agg) {
             ContactosController.contactos.add(nuevoContacto);
             salirDeAgregarContacto(event);
@@ -232,5 +234,18 @@ public class AgregarContactoController implements Initializable {
 
         return tf;
     }
-
+    
+    private static MyArrayList<Contacto> filterContactos(List<String> contactos) {
+        MyArrayList<Contacto> results = new MyArrayList<>();
+        List<Contacto> c = ContactosController.contactos;
+                     
+        for (String s : contactos) {
+            for (Contacto cont : c) {               
+                if ((cont.getNombre() + " " + cont.getApellido()).contains(s) && !results.contains(cont)) {
+                    results.add(cont);
+                }
+            }
+        }
+        return results;
+    }
 }
