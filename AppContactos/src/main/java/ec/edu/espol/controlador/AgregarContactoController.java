@@ -7,6 +7,7 @@ package ec.edu.espol.controlador;
 import Exceptiones.CampoVacioException;
 import ec.edu.espol.appcontactos.App;
 import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
+import ec.edu.espol.appcontactos.Tda.MyArrayList;
 import ec.edu.espol.modelo.Contacto;
 import ec.edu.espol.modelo.Foto;
 import java.io.File;
@@ -80,6 +81,7 @@ public class AgregarContactoController implements Initializable {
     private String Imagen;
     
     LinkedListCircular<Foto> e;
+    MyArrayList<Contacto> contactosRelacionados;
 
     /**
      * Initializes the controller class.
