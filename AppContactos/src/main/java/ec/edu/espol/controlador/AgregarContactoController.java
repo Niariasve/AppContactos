@@ -86,7 +86,7 @@ public class AgregarContactoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        e = new LinkedListCircular();
     }
 
     @FXML
@@ -107,6 +107,7 @@ public class AgregarContactoController implements Initializable {
         List<String> correos = getCorreos();
         List<String> redesSociales = getRedesSociales();
         List<String> fechas = getFechas();
+        List<Foto> f = e;
 
         boolean agg = true;
 
@@ -118,7 +119,7 @@ public class AgregarContactoController implements Initializable {
             alert.show();
             agg = false;
         }
-        Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, null);
+        Contacto nuevoContacto = new Contacto(nombre, apellido, empresa, direccion, correos, telefonos, redesSociales, fechas, null, f);
         if (agg) {
             ContactosController.contactos.add(nuevoContacto);
             salirDeAgregarContacto(event);
@@ -142,11 +143,7 @@ public class AgregarContactoController implements Initializable {
             
             if(!guardado.exists()){
                 guardado.mkdirs();
-            }
-            
-            
-            
-            
+            }          
         }
     }
 
