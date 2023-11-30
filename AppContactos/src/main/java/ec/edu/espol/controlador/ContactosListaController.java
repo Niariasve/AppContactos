@@ -166,11 +166,36 @@ public class ContactosListaController implements Initializable {
     }
 
     private void filtrarSinTextBox() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Error, no ha ingresado ningún valor a filtrar");
-        Optional<ButtonType> result = alert.showAndWait();
+        listaFP.setContent(null);
+        VBox medio = new VBox();
+
+        String opcionSeleccionada = Opciones.getValue();
+
+        Comparator<Contacto> comparator = getComparator(opcionSeleccionada);
+        contactos.sort(comparator);
+
+        for (int i = 0; i < contactos.size(); i++) {
+            crearContenedorDeContacto(contactos, i, medio);
+        }
+
+        listaFP.setContent(medio);
+
+    }
+
+    private Comparator<Contacto> getComparator(String opcionSeleccionada) {
+        switch (opcionSeleccionada) {
+            case "Apellido y Primer Nombre":
+                return Comparator.comparing(Contacto::getNombre).thenComparing(Contacto::getApellido);
+            case "Empresa":
+                return Comparator.comparing(Contacto::getEmpresa);
+            case "Dirección":
+                return Comparator.comparing(Contacto::getDireccion);
+            // Puedes agregar más casos según tus necesidades
+            default:
+                // En caso de que la opción seleccionada no coincida con ninguna opción conocida,
+                // simplemente devuelve un comparador que no realiza ningún cambio en el orden.
+                return Comparator.comparing(Contacto::getNombre);
+        }
     }
 
     private void crearContenedorDeContacto(List<Contacto> contactos, int i, VBox medio) {
