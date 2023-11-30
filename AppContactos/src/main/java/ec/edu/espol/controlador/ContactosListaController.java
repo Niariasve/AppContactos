@@ -122,7 +122,7 @@ public class ContactosListaController implements Initializable {
 
     @FXML
     private void filtrar(MouseEvent event) {
-        if (Busqueda.getText() != "") {
+        if (!"".equals(Busqueda.getText())) {
             filtrarConTextBox();
         } else {
             
@@ -156,7 +156,7 @@ public class ContactosListaController implements Initializable {
     }
     
     private void filtrarSinTextBox() {
-        
+        String opcion = Opciones.getValue();
     }
     
     private void crearContenedorDeContacto(List<Contacto> contactos, int i, VBox medio) {

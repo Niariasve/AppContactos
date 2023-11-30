@@ -41,7 +41,7 @@ public class ContactosController implements Initializable {
     public static LinkedListCircular<Contacto> contactos = new LinkedListCircular<>();
     public static int numContactosAgg = 0;
 
-    private int contactoMostrado = 0;
+    private static int contactoMostrado = 0;
 
     private final String stockUrl = "src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";
 
@@ -267,5 +267,9 @@ public class ContactosController implements Initializable {
             eliminar(contactoMostrado);
             actualizarPantalla(contactoMostrado);
         }
+    }
+    
+    public static int getContactoActual() {
+        return contactoMostrado;
     }
 }

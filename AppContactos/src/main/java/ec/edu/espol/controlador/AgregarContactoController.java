@@ -84,6 +84,8 @@ public class AgregarContactoController implements Initializable {
 
     LinkedListCircular<Foto> e;
     MyArrayList<Contacto> contactosRelacionados;
+    
+    public static boolean editarFlag = false;
 
     /**
      * Initializes the controller class.
@@ -98,14 +100,18 @@ public class AgregarContactoController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        if (editarFlag) {
+            Contacto c = ContactosController.contactos.get(ContactosController.getContactoActual());
+            nombreTf.setPromptText(c.getNombre());
+            
+        }
     }
 
     @FXML
     private void salirDeAgregarContacto(MouseEvent event) {
         try {
             App.setRoot("contactos");
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @FXML
