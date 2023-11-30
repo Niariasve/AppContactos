@@ -50,6 +50,9 @@ public class FotosController implements Initializable{
             System.out.println(photoSelect.toURI().toString());
 
             contactoActualFotos.add(new Foto(photoSelect.toURI().toString()));
+            
+            imagenMostrada.setImage(new Image(contactoActualFotos.get(contactoActualFotos.size()-1).getUrl(),true));
+            imagenActual = contactoActualFotos.size() - 1;
         }
     }
 
@@ -69,6 +72,7 @@ public class FotosController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imagenActual = 0;
         if (!contactoActualFotos.isEmpty()) {
             Image im = new Image(contactoActualFotos.get(0).getUrl(), true);
             imagenMostrada.setImage(im);
