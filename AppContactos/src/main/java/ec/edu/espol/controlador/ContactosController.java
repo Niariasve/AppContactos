@@ -221,6 +221,8 @@ public class ContactosController implements Initializable {
             }
         }
     }
+    
+  
 
     public void setImagen(Contacto c) {
 
@@ -277,4 +279,12 @@ public class ContactosController implements Initializable {
             App.setRoot("agregarContacto");
         } catch (IOException ex) {}
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }

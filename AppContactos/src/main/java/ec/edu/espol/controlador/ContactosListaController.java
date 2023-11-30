@@ -100,8 +100,7 @@ public class ContactosListaController implements Initializable {
     }
 
     @FXML
-    private void cambiarVistaContactos(MouseEvent event
-    ) {
+    private void cambiarVistaContactos(MouseEvent event) {
         try {
             App.setRoot("contactos");
         } catch (IOException ex) {
@@ -122,7 +121,7 @@ public class ContactosListaController implements Initializable {
         if (Busqueda.getText().isEmpty()) {
             filtrarSinTextBox();
         } else {
-            filtrarConTextBox();    
+            filtrarConTextBox();
         }
     }
 
@@ -216,6 +215,13 @@ public class ContactosListaController implements Initializable {
         Label textoContacto = new Label(nombreCompleto);
         textoContacto.setFont(Font.font("Segoe UI", 14));  // FUENTE DE LETRA 
         contenedor.getChildren().add(textoContacto);
+        //
+        contenedor.setOnMouseClicked(event -> {
+            //int indice = i;
+            
+        });
+        //
         medio.getChildren().add(contenedor);
+
     }
 }
