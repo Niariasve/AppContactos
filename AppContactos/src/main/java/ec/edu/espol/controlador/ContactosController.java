@@ -214,6 +214,7 @@ public class ContactosController implements Initializable {
                     if (indice != -1) {
                         contactoMostrado = indice;
                         actualizarPantalla(contactoMostrado);
+                        espacioRelacionados.getChildren().remove(vboxContacto);
                     }
                 });
                 espacioRelacionados.getChildren().add(vboxContacto);
