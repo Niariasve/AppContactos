@@ -56,7 +56,7 @@
                     <children>
                         <Pane prefHeight="25.0" prefWidth="400.0">
                      <children>
-                        <RadioButton fx:id="favRB" layoutX="167.0" layoutY="-7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" text="Favorito" textFill="#942424" />
+                        <RadioButton fx:id="favRB" onMouseClicked="#agregarComoFavorito" layoutX="167.0" layoutY="-7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" text="Favorito" textFill="#942424" />
                      </children></Pane>
                         <ImageView fx:id="actualProfilePic" fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                             <image>

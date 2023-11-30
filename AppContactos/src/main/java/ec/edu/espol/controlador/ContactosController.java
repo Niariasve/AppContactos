@@ -6,6 +6,7 @@ package ec.edu.espol.controlador;
 
 import ec.edu.espol.appcontactos.App;
 import ec.edu.espol.appcontactos.Tda.LinkedListCircular;
+import ec.edu.espol.appcontactos.Tda.MyArrayList;
 import ec.edu.espol.modelo.Contacto;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,7 +40,9 @@ import javafx.scene.layout.VBox;
 public class ContactosController implements Initializable {
 
     //Change for own tda
+    
     public static LinkedListCircular<Contacto> contactos = new LinkedListCircular<>();
+    
     public static int numContactosAgg = 0;
 
     public static int contactoMostrado = 0;
@@ -70,7 +73,7 @@ public class ContactosController implements Initializable {
     private Label contactosRelacionadosLabel;
     @FXML
     private VBox espacioRelacionados;
-    
+
     public static boolean listaSelectFlag = false;
 
     @FXML
@@ -102,8 +105,20 @@ public class ContactosController implements Initializable {
         } else {
             actualizarPantalla(contactoMostrado);
         }
+        
+        //que se mantenga el selected
+        if (!contactos.isEmpty()) {
+            Contacto contactoActual = contactos.get(contactoMostrado);
+            actualizarPantalla(contactoMostrado);
+
+            if (FavoritosController.favoritos.contains(contactoActual)) {
+                favRB.setSelected(true);
+            } else {
+                favRB.setSelected(false);
+            }
+        }
     }
-    
+
     @FXML
     private void entrarFavoritos(MouseEvent event) {
         try {
@@ -242,7 +257,6 @@ public class ContactosController implements Initializable {
             }
         }
     }
-    
 
     ImageView cargarImagen(String url) {
         try {
@@ -294,6 +308,24 @@ public class ContactosController implements Initializable {
         try {
             App.setRoot("agregarContacto");
         } catch (IOException ex) {
+        }
+    }
+
+    
+
+    @FXML
+    private void agregarComoFavorito(MouseEvent event) {
+        if (!contactos.isEmpty()) {
+            Contacto contactoActual = contactos.get(contactoMostrado);
+            agregarAFavoritos(contactoActual);
+        }
+    }
+
+    private void agregarAFavoritos(Contacto contacto) {
+        if (favRB.isSelected()) {
+            FavoritosController.favoritos.add(contacto);
+        }else{
+            FavoritosController.favoritos.remove(contacto);
         }
     }
 
