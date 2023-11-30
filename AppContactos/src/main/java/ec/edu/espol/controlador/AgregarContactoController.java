@@ -137,6 +137,7 @@ public class AgregarContactoController implements Initializable {
             }
             
             if (!c.getFotos().isEmpty()) {
+                e = (LinkedListCircular)c.getFotos();
                 String urlFoto = c.getFotos().get(0).getUrl();
                 Image im = new Image(urlFoto, true); 
                     im.errorProperty().addListener((observable, oldValue, newValue) -> {

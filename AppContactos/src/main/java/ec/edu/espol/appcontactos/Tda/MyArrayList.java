@@ -58,7 +58,7 @@ public class MyArrayList<E> implements List<E> {
         for (int i = 0; i < this.size; i++) {
             s.append(this.get(i).toString());
             if (i < this.size - 1) {
-                s.append("\n");
+                s.append(", ");
             }
         }
 
