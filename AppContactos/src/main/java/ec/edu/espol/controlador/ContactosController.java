@@ -171,11 +171,9 @@ public class ContactosController implements Initializable {
     @FXML
     private void CambiarVistaFotos(MouseEvent event) {
         if (!contactos.isEmpty()) {
-            System.out.println(contactos.get(contactoMostrado).getFotos().size());
             try {
                 App.setRoot("fotos");
-            } catch (IOException ex) {
-            }
+            } catch (IOException ex) {}
         }
     }
 
