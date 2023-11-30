@@ -62,7 +62,8 @@ public class ContactosListaController implements Initializable {
 
     @FXML
     private Button filtrarB;
-
+    
+ 
     /**
      * Initializes the controller class.
      */
