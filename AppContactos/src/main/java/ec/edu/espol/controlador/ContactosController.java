@@ -127,10 +127,9 @@ public class ContactosController implements Initializable {
                     }
                     System.out.println(urlFoto);
 
-                    Image im = new Image(urlFoto, true); // true para cargar de manera asíncrona
+                    Image im = new Image(urlFoto, true); 
                     im.errorProperty().addListener((observable, oldValue, newValue) -> {
-                        if (newValue) {
-                            // Manejar el error de carga de la imagen aquí
+                        if (newValue) {                           
                             System.out.println("Error al cargar la imagen: " + urlFoto);
                         }
                     });
@@ -138,8 +137,7 @@ public class ContactosController implements Initializable {
                         actualProfilePic.setImage(im);
                     });
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    // Manejar otras excepciones aquí
+                    e.printStackTrace();                   
                 }
             }
         }
@@ -271,5 +269,13 @@ public class ContactosController implements Initializable {
     
     public static int getContactoActual() {
         return contactoMostrado;
+    }
+
+    @FXML
+    private void cambiarEditarContacto(MouseEvent event) {
+        AgregarContactoController.editarFlag = true;
+        try {
+            App.setRoot("agregarContacto");
+        } catch (IOException ex) {}
     }
 }

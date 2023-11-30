@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -103,7 +104,56 @@ public class AgregarContactoController implements Initializable {
         if (editarFlag) {
             Contacto c = ContactosController.contactos.get(ContactosController.getContactoActual());
             nombreTf.setPromptText(c.getNombre());
+            apellidoTf.setPromptText(c.getApellido());
+            empresaTf.setPromptText(c.getEmpresa());
+            direccionTf.setPromptText(c.getDireccion());
             
+            if (!c.getNumerosTelefonicos().isEmpty()) {
+                telefonoTf.setPromptText(c.getNumerosTelefonicos().get(0));
+                for (int i = 1; i < c.getNumerosTelefonicos().size(); i++) {
+                    telefonosFP.getChildren().add(newTextField(c.getNumerosTelefonicos().get(i)));
+                }
+            }
+            
+            if (!c.getEmails().isEmpty()) {
+                correoTf.setPromptText(c.getEmails().get(0));
+                for (int i = 1; i < c.getEmails().size(); i++) {
+                    correosFP.getChildren().add(newTextField(c.getEmails().get(i)));
+                }
+            }
+            
+            if (!c.getRedesSociales().isEmpty()) {
+                redesSocialesTf.setPromptText(c.getRedesSociales().get(0));
+                for (int i = 1; i < c.getRedesSociales().size(); i++) {
+                    redesSocialesFP.getChildren().add(newTextField(c.getRedesSociales().get(i)));
+                }
+            }
+            
+            if (!c.getFechasDeInteres().isEmpty()) {
+                fechasTf.setPromptText(c.getFechasDeInteres().get(0));
+                for (int i = 1; i < c.getFechasDeInteres().size(); i++) {
+                    fechasFP.getChildren().add(newTextField(c.getFechasDeInteres().get(i)));
+                }
+            }
+            
+            if (!c.getFotos().isEmpty()) {
+                String urlFoto = c.getFotos().get(0).getUrl();
+                Image im = new Image(urlFoto, true); 
+                    im.errorProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue) {                            
+                            System.out.println("Error al cargar la imagen: " + urlFoto);
+                        }
+                });
+                Platform.runLater(() -> {
+                    profilePicture.setImage(im);
+                });
+            }
+            
+            if (!c.getContactosRelacionados().isEmpty()) {
+                contactosRelacionados = (MyArrayList)c.getContactosRelacionados();
+            }
+            ContactosController.contactos.remove(c);
+            editarFlag = false;
         }
     }
 
@@ -199,7 +249,7 @@ public class AgregarContactoController implements Initializable {
     }
 
     void cargarCombo() throws IOException {
-        ArrayList<String> ordenar = new ArrayList<>();
+        MyArrayList<String> ordenar = new MyArrayList<>();
         ordenar.add("Persona");
         ordenar.add("Empresa");
         cbxcontacto.getItems().setAll(ordenar);
@@ -264,7 +314,7 @@ public class AgregarContactoController implements Initializable {
         para poder extraer los datos y poder crear la instancia de contacto e introducirla en
         la lista de contactos
          */
-        List<String> stringList = new ArrayList<>();
+        List<String> stringList = new MyArrayList<>();
 
         for (Node node : nodeList) {
             if (node instanceof TextField) {

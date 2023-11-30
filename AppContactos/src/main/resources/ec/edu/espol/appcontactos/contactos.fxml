@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosController">
     <children>
         <VBox prefHeight="600.0" prefWidth="400.0">
             <children>
@@ -31,7 +31,7 @@
                                     </HBox.margin>
                                 </Button>
 
-                                <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="56.0" text="Editar" textOverrun="CLIP">
+                                <Button mnemonicParsing="false" onMouseClicked="#cambiarEditarContacto" prefHeight="34.0" prefWidth="56.0" text="Editar" textOverrun="CLIP">
                                     <HBox.margin>
                                         <Insets right="10.0" />
                                     </HBox.margin>
@@ -108,7 +108,7 @@
                                             </font>
                                         </Label>
                                         <Label fx:id="fechasLabel" />
-                                        <Label text="Contactos Relacionados " onMouseClicked="#clickTexto" style="-fx-text-fill: blue; -fx-underline: true;">
+                                        <Label onMouseClicked="#clickTexto" style="-fx-text-fill: blue; -fx-underline: true;" text="Contactos Relacionados ">
                                             <font>
                                                 <Font name="Eras Demi ITC" size="12.0" />
                                             </font>

@@ -144,4 +144,7 @@ public class Contacto implements Comparable{
         return this.nombre.compareTo(other.nombre);
     }
     
+    public String toString() {
+        return nombre + " " + apellido;
+    }
 }

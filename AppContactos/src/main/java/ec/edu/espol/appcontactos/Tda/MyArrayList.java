@@ -50,6 +50,20 @@ public class MyArrayList<E> implements List<E> {
         }
         
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+
+        for (int i = 0; i < this.size; i++) {
+            s.append(this.get(i).toString());
+            if (i < this.size - 1) {
+                s.append("\n");
+            }
+        }
+
+        return s.toString();
+    }
  
     @Override
     public int size() {
