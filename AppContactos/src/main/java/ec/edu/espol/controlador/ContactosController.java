@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -74,6 +75,8 @@ public class ContactosController implements Initializable {
 
     @FXML
     private Button favoritoB;
+    @FXML
+    private RadioButton favRB;
 
     /**
      * Initializes the controller class.
@@ -98,6 +101,14 @@ public class ContactosController implements Initializable {
             System.out.println(numContactosAgg);
         } else {
             actualizarPantalla(contactoMostrado);
+        }
+    }
+    
+    @FXML
+    private void entrarFavoritos(MouseEvent event) {
+        try {
+            App.setRoot("favoritos");
+        } catch (IOException ex) {
         }
     }
 
