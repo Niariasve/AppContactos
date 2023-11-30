@@ -41,7 +41,7 @@ public class ContactosController implements Initializable {
     public static LinkedListCircular<Contacto> contactos = new LinkedListCircular<>();
     public static int numContactosAgg = 0;
 
-    private static int contactoMostrado = 0;
+    public static int contactoMostrado = 0;
 
     private final String stockUrl = "src\\main\\resources\\ec\\edu\\espol\\imgs\\istockphoto-1337144146-612x612.jpg";
 
@@ -69,27 +69,33 @@ public class ContactosController implements Initializable {
     private Label contactosRelacionadosLabel;
     @FXML
     private VBox espacioRelacionados;
+    
+    public static boolean listaSelectFlag = false;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //check if size is the same as sizeActual
-        System.out.println(contactos);
-        if (numContactosAgg != contactos.size()) {
-            System.out.println("Hay que actualizar la lista");
-            actualizarPantalla(contactos.size() - 1);
-            numContactosAgg++;
-            contactoMostrado = numContactosAgg - 1;
-        } else {
-            System.out.println("No es necesario actualizar");
-            if (!contactos.isEmpty()) {
-                actualizarPantalla(0);
+        if (!listaSelectFlag) {
+            //check if size is the same as sizeActual
+            System.out.println(contactos);
+            if (numContactosAgg != contactos.size()) {
+                System.out.println("Hay que actualizar la lista");
+                actualizarPantalla(contactos.size() - 1);
+                numContactosAgg++;
+                contactoMostrado = numContactosAgg - 1;
+            } else {
+                System.out.println("No es necesario actualizar");
+                if (!contactos.isEmpty()) {
+                    actualizarPantalla(0);
+                }
             }
+            System.out.println(contactoMostrado);
+            System.out.println(numContactosAgg);
+        } else {
+            actualizarPantalla(contactoMostrado);
         }
-        System.out.println(contactoMostrado);
-        System.out.println(numContactosAgg);
     }
 
     @FXML
@@ -222,11 +228,6 @@ public class ContactosController implements Initializable {
         }
     }
     
-  
-
-    public void setImagen(Contacto c) {
-
-    }
 
     ImageView cargarImagen(String url) {
         try {

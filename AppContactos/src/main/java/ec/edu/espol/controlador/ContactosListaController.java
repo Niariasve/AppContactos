@@ -199,6 +199,7 @@ public class ContactosListaController implements Initializable {
 
     private void crearContenedorDeContacto(List<Contacto> contactos, int i, VBox medio) {
         VBox contenedor = new VBox();
+        contenedor.setId(Integer.toString(i));
         contenedor.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"); // ESTILO DEL CONTENEDOR
         contenedor.setPrefSize(395, 40); // TAMANO DEL CONTENEDOR 
         contenedor.setAlignment(Pos.CENTER_LEFT); //ALINEACION IZQ CENTRO
@@ -217,8 +218,13 @@ public class ContactosListaController implements Initializable {
         contenedor.getChildren().add(textoContacto);
         //
         contenedor.setOnMouseClicked(event -> {
-            //int indice = i;
-            
+            System.out.println(contenedor.getId());
+            Contacto c = contactos.get(Integer.parseInt(contenedor.getId()));
+            ContactosController.contactoMostrado = ContactosController.contactos.indexOf(c);
+            ContactosController.listaSelectFlag = true;
+            try {
+                App.setRoot("contactos");
+            } catch (IOException ex) {}            
         });
         //
         medio.getChildren().add(contenedor);
