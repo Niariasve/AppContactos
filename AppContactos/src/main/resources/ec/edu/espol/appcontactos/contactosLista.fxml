@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controlador.ContactosListaController">
    <children>
       <VBox prefHeight="600.0" prefWidth="400.0">
          <children>
@@ -45,7 +45,8 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="filtrarA" mnemonicParsing="false" onMouseClicked="#filtrar" text="filtrar">
+                        <Button onMouseClicked="#filtrar" prefHeight="25.0" prefWidth="58.0" text="Filtrar">
+
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></Button>
