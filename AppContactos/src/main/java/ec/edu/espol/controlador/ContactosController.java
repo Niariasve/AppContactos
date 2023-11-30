@@ -40,9 +40,8 @@ import javafx.scene.layout.VBox;
 public class ContactosController implements Initializable {
 
     //Change for own tda
-    
     public static LinkedListCircular<Contacto> contactos = new LinkedListCircular<>();
-    
+
     public static int numContactosAgg = 0;
 
     public static int contactoMostrado = 0;
@@ -105,7 +104,7 @@ public class ContactosController implements Initializable {
         } else {
             actualizarPantalla(contactoMostrado);
         }
-        
+
         //que se mantenga el selected
         if (!contactos.isEmpty()) {
             Contacto contactoActual = contactos.get(contactoMostrado);
@@ -184,6 +183,7 @@ public class ContactosController implements Initializable {
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
         mostrarContactosRelacionados();
+        actualizarEstadoFavorito();
     }
 
     @FXML
@@ -192,7 +192,7 @@ public class ContactosController implements Initializable {
         System.out.println(contactoMostrado);
         actualizarPantalla(contactoMostrado);
         mostrarContactosRelacionados();
-
+        actualizarEstadoFavorito();
     }
 
     @FXML
@@ -311,8 +311,6 @@ public class ContactosController implements Initializable {
         }
     }
 
-    
-
     @FXML
     private void agregarComoFavorito(MouseEvent event) {
         if (!contactos.isEmpty()) {
@@ -324,9 +322,19 @@ public class ContactosController implements Initializable {
     private void agregarAFavoritos(Contacto contacto) {
         if (favRB.isSelected()) {
             FavoritosController.favoritos.add(contacto);
-        }else{
+        } else {
             FavoritosController.favoritos.remove(contacto);
         }
     }
 
+    private void actualizarEstadoFavorito() {
+        if (!contactos.isEmpty()) {
+            Contacto contactoActual = contactos.get(contactoMostrado);
+            if (FavoritosController.favoritos.contains(contactoActual)) {
+                favRB.setSelected(true);
+            } else {
+                favRB.setSelected(false);
+            }
+        }
+    }
 }
