@@ -69,6 +69,8 @@ public class ContactosController implements Initializable {
     private Label contactosRelacionadosLabel;
     @FXML
     private VBox espacioRelacionados;
+    @FXML
+    private Button favoritoB;
 
     /**
      * Initializes the controller class.
@@ -127,9 +129,9 @@ public class ContactosController implements Initializable {
                     }
                     System.out.println(urlFoto);
 
-                    Image im = new Image(urlFoto, true); 
+                    Image im = new Image(urlFoto, true);
                     im.errorProperty().addListener((observable, oldValue, newValue) -> {
-                        if (newValue) {                           
+                        if (newValue) {
                             System.out.println("Error al cargar la imagen: " + urlFoto);
                         }
                     });
@@ -137,7 +139,7 @@ public class ContactosController implements Initializable {
                         actualProfilePic.setImage(im);
                     });
                 } catch (Exception e) {
-                    e.printStackTrace();                   
+                    e.printStackTrace();
                 }
             }
         }
@@ -173,7 +175,8 @@ public class ContactosController implements Initializable {
         if (!contactos.isEmpty()) {
             try {
                 App.setRoot("fotos");
-            } catch (IOException ex) {}
+            } catch (IOException ex) {
+            }
         }
     }
 
@@ -221,8 +224,6 @@ public class ContactosController implements Initializable {
             }
         }
     }
-    
-  
 
     public void setImagen(Contacto c) {
 
@@ -267,7 +268,7 @@ public class ContactosController implements Initializable {
             actualizarPantalla(contactoMostrado);
         }
     }
-    
+
     public static int getContactoActual() {
         return contactoMostrado;
     }
@@ -277,14 +278,8 @@ public class ContactosController implements Initializable {
         AgregarContactoController.editarFlag = true;
         try {
             App.setRoot("agregarContacto");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
