@@ -122,7 +122,7 @@ public class ContactosListaController implements Initializable {
         if (Busqueda.getText().isEmpty()) {
             filtrarSinTextBox();
         } else {
-            filtrarConTextBox();
+            filtrarConTextBox();    
         }
     }
 
